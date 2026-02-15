@@ -19,23 +19,7 @@ export default function PostHero({
 }: PostHeroProps) {
   return (
     <div className="relative w-full h-[400px] md:h-[500px] bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31]">
-      {featuredImage && (
-        <>
-          <Image
-            src={featuredImage}
-            alt={featuredImageAlt}
-            fill
-            className="object-cover opacity-40"
-            priority
-            sizes="100vw"
-            onError={(e) => {
-              // Hide image on error
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/95 to-transparent" />
-        </>
-      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 to-transparent" />
       
       <div className="absolute bottom-0 left-0 right-0 p-8">
         <div className="max-w-container mx-auto">
