@@ -2,10 +2,11 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/blog/:path*",
-      "destination": "/blog/:path*"
+      "source": "/",
+      "destination": "/blog",
+      "permanent": false
     }
   ]
 }
