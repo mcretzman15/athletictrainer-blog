@@ -1,68 +1,32 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container";
 import PostCard from "@/components/blog/PostCard";
 import CategoryPills from "@/components/blog/CategoryPills";
 import Sidebar from "@/components/blog/Sidebar";
 import Pagination from "@/components/blog/Pagination";
-import { getPaginatedPostsByCategory } from "@/lib/posts";
+import { getPaginatedPosts } from "@/lib/posts";
 import { getAllCategories, getFeaturedPosts } from "@/lib/mdx";
-import { slugify } from "@/lib/utils";
 
-interface CategoryPageProps {
-  params: Promise<{ category: string }>;
+interface BlogIndexProps {
   searchParams: Promise<{ page?: string }>;
 }
 
-export async function generateStaticParams() {
-  const categories = getAllCategories();
-  return categories.map((category) => ({
-    category: slugify(category),
-  }));
-}
+export const metadata: Metadata = {
+  title: "Athletic Trainer Career Resources | PSI Blog",
+  description: "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities with Army H2F and Marine Corps SMIP programs.",
+  openGraph: {
+    title: "Athletic Trainer Career Resources | PSI Blog",
+    description: "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities.",
+    type: "website",
+    url: "https://www.athletictrainerjob.com/blog/",
+  },
+};
 
-export async function generateMetadata({
-  params,
-}: CategoryPageProps): Promise<Metadata> {
-  const { category: categorySlug } = await params;
-  const categories = getAllCategories();
-  const category = categories.find(
-    (cat) => slugify(cat) === categorySlug
-  );
-
-  if (!category) {
-    return {
-      title: "Category Not Found",
-    };
-  }
-
-  return {
-    title: `${category} | PSI Athletic Trainer Blog`,
-    description: `Browse articles about ${category} for athletic trainers exploring military healthcare careers.`,
-  };
-}
-
-export default async function CategoryPage({
-  params,
-  searchParams,
-}: CategoryPageProps) {
-  const { category: categorySlug } = await params;
+export default async function BlogIndex({ searchParams }: BlogIndexProps) {
   const { page: pageParam } = await searchParams;
-  const categories = getAllCategories();
-  const currentCategory = categories.find(
-    (cat) => slugify(cat) === categorySlug
-  );
-
-  if (!currentCategory) {
-    notFound();
-  }
-
   const page = Number(pageParam) || 1;
-  const { posts, pagination } = getPaginatedPostsByCategory(
-    currentCategory,
-    page,
-    9
-  );
+  const { posts, pagination } = getPaginatedPosts(page, 9);
+  const categories = getAllCategories();
   const featuredPosts = getFeaturedPosts(4);
 
   return (
@@ -72,11 +36,11 @@ export default async function CategoryPage({
         <Container>
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              {currentCategory}
+              Athletic Trainer Career Resources
             </h1>
             <p className="text-lg md:text-xl text-green-50">
-              Explore articles about {currentCategory.toLowerCase()} for
-              athletic trainers in military healthcare.
+              Expert insights, program guides, and resources for athletic trainers
+              exploring military healthcare opportunities.
             </p>
           </div>
         </Container>
@@ -85,10 +49,7 @@ export default async function CategoryPage({
       {/* Category Filters */}
       <section className="bg-white border-b border-border-gray py-6">
         <Container>
-          <CategoryPills
-            categories={categories}
-            currentCategory={currentCategory}
-          />
+          <CategoryPills categories={categories} currentCategory={null} />
         </Container>
       </section>
 
@@ -101,7 +62,7 @@ export default async function CategoryPage({
               {posts.length === 0 ? (
                 <div className="text-center py-12">
                   <p className="text-gray-text text-lg">
-                    No articles found in this category yet.
+                    No articles found yet. Check back soon!
                   </p>
                 </div>
               ) : (
@@ -113,10 +74,7 @@ export default async function CategoryPage({
                   </div>
 
                   {/* Pagination */}
-                  <Pagination
-                    pagination={pagination}
-                    basePath={`/category/${categorySlug}`}
-                  />
+                  <Pagination pagination={pagination} basePath="/" />
                 </>
               )}
             </div>

@@ -8,7 +8,7 @@ interface PaginationProps {
 
 export default function Pagination({
   pagination,
-  basePath = "/blog",
+  basePath = "/",
 }: PaginationProps) {
   const { currentPage, totalPages, hasPrevPage, hasNextPage } = pagination;
 
