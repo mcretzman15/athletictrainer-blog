@@ -83,10 +83,16 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const breadcrumbItems = generateBreadcrumbs(slug, frontmatter.category);
   const fullUrl = frontmatter.canonicalUrl;
 
-  // Compile MDX
+  // Compile MDX with options to properly parse JSX expressions
   const { content: mdxContent } = await compileMDX({
     source: content,
     components: MDXComponents,
+    options: {
+      parseFrontmatter: false,
+      mdxOptions: {
+        development: process.env.NODE_ENV === 'development',
+      },
+    },
   });
 
   return (
