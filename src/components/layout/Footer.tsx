@@ -1,8 +1,6 @@
 import Link from "next/link";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-navy text-white mt-auto">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -103,7 +101,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© {currentYear} PSI. All rights reserved.</p>
+            <p>© 2026 PSI. All rights reserved.</p>
             <p className="text-xs max-w-2xl text-center md:text-right">
               PSI is an Equal Opportunity Employer. All qualified applicants will
               receive consideration for employment without regard to race, color,
