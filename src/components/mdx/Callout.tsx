@@ -29,7 +29,7 @@ export default function Callout({ type = "info", children }: CalloutProps) {
       text: "text-green-900",
     },
     mission: {
-      bg: "bg-gradient-to-r from-primary to-blue-800",
+      bg: "bg-gradient-to-r from-primary via-[#556B47] to-[#3D4F31]",
       border: "border-primary",
       icon: "🎯",
       iconBg: "bg-primary",

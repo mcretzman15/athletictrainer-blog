@@ -37,7 +37,7 @@ export default function PostHero({
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 max-w-4xl">
             {title}
           </h1>
-          <div className="flex items-center gap-4 text-sm text-blue-100">
+          <div className="flex items-center gap-4 text-sm text-green-50">
             <span>{date}</span>
             <span>•</span>
             <span>{readingTime} min read</span>

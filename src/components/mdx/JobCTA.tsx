@@ -17,11 +17,11 @@ export default function JobCTA({ location, program }: JobCTAProps) {
   }
 
   return (
-    <div className="bg-gradient-to-r from-primary to-blue-800 text-white rounded-xl p-8 my-8 text-center shadow-lg">
+    <div className="bg-gradient-to-r from-primary via-[#556B47] to-[#3D4F31] text-white rounded-xl p-8 my-8 text-center shadow-lg">
       <h3 className="text-2xl font-bold mb-4 text-white">
         Ready to Take the Next Step?
       </h3>
-      <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+      <p className="text-green-50 mb-6 max-w-2xl mx-auto">
         Join our team and make a meaningful impact on military readiness while
         advancing your athletic training career.
       </p>

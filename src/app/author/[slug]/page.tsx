@@ -39,7 +39,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
   return (
     <>
       {/* Author Hero */}
-      <section className="bg-gradient-to-r from-primary to-blue-800 text-white py-16">
+      <section className="bg-gradient-to-r from-primary via-[#556B47] to-[#3D4F31] text-white py-16">
         <Container>
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="flex-shrink-0">
@@ -62,8 +62,8 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
               <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">
                 {author.name}
               </h1>
-              <p className="text-xl text-blue-100 mb-4">{author.title}</p>
-              <p className="text-blue-100 max-w-2xl">{author.bio}</p>
+              <p className="text-xl text-green-50 mb-4">{author.title}</p>
+              <p className="text-green-50 max-w-2xl">{author.bio}</p>
               {(author.linkedin || author.twitter) && (
                 <div className="flex gap-4 mt-6 justify-center md:justify-start">
                   {author.linkedin && (
@@ -71,7 +71,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                       href={author.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-blue-200 transition-colors"
+                      className="text-white hover:text-green-200 transition-colors"
                     >
                       <svg
                         className="w-6 h-6"
@@ -87,7 +87,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                       href={author.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-blue-200 transition-colors"
+                      className="text-white hover:text-green-200 transition-colors"
                     >
                       <svg
                         className="w-6 h-6"

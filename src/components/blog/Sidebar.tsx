@@ -32,9 +32,9 @@ export default function Sidebar({ featuredPosts }: SidebarProps) {
       </div>
 
       {/* Apply Now CTA */}
-      <div className="bg-gradient-to-br from-primary to-blue-800 text-white rounded-xl p-6 shadow-lg">
+      <div className="bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31] text-white rounded-xl p-6 shadow-lg">
         <h3 className="text-lg font-semibold mb-3">Ready to Apply?</h3>
-        <p className="text-sm text-blue-100 mb-4">
+        <p className="text-sm text-green-50 mb-4">
           Join our team of Athletic Trainers serving in military healthcare
           programs across the United States.
         </p>
