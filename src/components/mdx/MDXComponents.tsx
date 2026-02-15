@@ -10,6 +10,7 @@ import ComparisonTable, {
   TableHeader,
   TableCell,
 } from "./ComparisonTable";
+import ArticleImage from "./ArticleImage";
 
 export const MDXComponents = {
   // Custom components
@@ -20,6 +21,7 @@ export const MDXComponents = {
   SalaryRange,
   LocationCard,
   ComparisonTable,
+  ArticleImage,
   TableHead,
   TableBody,
   TableRow,
