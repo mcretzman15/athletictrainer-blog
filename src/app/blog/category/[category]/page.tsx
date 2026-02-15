@@ -10,8 +10,8 @@ import { getAllCategories, getFeaturedPosts } from "@/lib/mdx";
 import { slugify } from "@/lib/utils";
 
 interface CategoryPageProps {
-  params: { category: string };
-  searchParams: { page?: string };
+  params: Promise<{ category: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export async function generateStaticParams() {
@@ -24,9 +24,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
+  const { category: categorySlug } = await params;
   const categories = getAllCategories();
   const category = categories.find(
-    (cat) => slugify(cat) === params.category
+    (cat) => slugify(cat) === categorySlug
   );
 
   if (!category) {
@@ -41,20 +42,22 @@ export async function generateMetadata({
   };
 }
 
-export default function CategoryPage({
+export default async function CategoryPage({
   params,
   searchParams,
 }: CategoryPageProps) {
+  const { category: categorySlug } = await params;
+  const { page: pageParam } = await searchParams;
   const categories = getAllCategories();
   const currentCategory = categories.find(
-    (cat) => slugify(cat) === params.category
+    (cat) => slugify(cat) === categorySlug
   );
 
   if (!currentCategory) {
     notFound();
   }
 
-  const page = Number(searchParams.page) || 1;
+  const page = Number(pageParam) || 1;
   const { posts, pagination } = getPaginatedPostsByCategory(
     currentCategory,
     page,
@@ -112,7 +115,7 @@ export default function CategoryPage({
                   {/* Pagination */}
                   <Pagination
                     pagination={pagination}
-                    basePath={`/blog/category/${params.category}`}
+                    basePath={`/blog/category/${categorySlug}`}
                   />
                 </>
               )}

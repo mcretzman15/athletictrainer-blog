@@ -21,11 +21,12 @@ export const metadata: Metadata = {
 };
 
 interface BlogIndexProps {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }
 
-export default function BlogIndex({ searchParams }: BlogIndexProps) {
-  const page = Number(searchParams.page) || 1;
+export default async function BlogIndex({ searchParams }: BlogIndexProps) {
+  const { page: pageParam } = await searchParams;
+  const page = Number(pageParam) || 1;
   const { posts, pagination } = getPaginatedPosts(page, 9);
   const categories = getAllCategories();
   const featuredPosts = getFeaturedPosts(4);

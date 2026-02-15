@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
+import { compileMDX } from "next-mdx-remote/rsc";
 import Container from "@/components/layout/Container";
 import PostHero from "@/components/blog/PostHero";
 import Breadcrumbs from "@/components/blog/Breadcrumbs";
@@ -18,7 +16,7 @@ import ArticleSchema from "@/components/seo/ArticleSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 interface BlogPostProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -29,7 +27,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -70,8 +69,9 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
   };
 }
 
-export default function BlogPost({ params }: BlogPostProps) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPost({ params }: BlogPostProps) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -79,18 +79,15 @@ export default function BlogPost({ params }: BlogPostProps) {
 
   const { frontmatter, content, headings } = post;
   const author = getAuthorBySlug(frontmatter.author);
-  const relatedPosts = getRelatedPosts(params.slug, 3);
-  const breadcrumbItems = generateBreadcrumbs(params.slug, frontmatter.category);
+  const relatedPosts = getRelatedPosts(slug, 3);
+  const breadcrumbItems = generateBreadcrumbs(slug, frontmatter.category);
   const fullUrl = frontmatter.canonicalUrl;
 
-  // Add IDs to headings in content for anchor links
-  const contentWithIds = content.replace(
-    /^(#{2,3})\s+(.+)$/gm,
-    (match, hashes, text) => {
-      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-      return `${hashes} ${text} {#${id}}`;
-    }
-  );
+  // Compile MDX
+  const { content: mdxContent } = await compileMDX({
+    source: content,
+    components: MDXComponents,
+  });
 
   return (
     <>
@@ -121,16 +118,7 @@ export default function BlogPost({ params }: BlogPostProps) {
                 <TableOfContents headings={headings} />
 
                 <div className="prose prose-lg max-w-none">
-                  <MDXRemote
-                    source={contentWithIds}
-                    components={MDXComponents}
-                    options={{
-                      mdxOptions: {
-                        remarkPlugins: [remarkGfm],
-                        rehypePlugins: [rehypeHighlight],
-                      },
-                    }}
-                  />
+                  {mdxContent}
                 </div>
 
                 <CTABanner />

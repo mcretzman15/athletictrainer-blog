@@ -6,13 +6,14 @@ import PostCard from "@/components/blog/PostCard";
 import { getPostsByAuthor, getAuthorBySlug } from "@/lib/mdx";
 
 interface AuthorPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: AuthorPageProps): Promise<Metadata> {
-  const author = getAuthorBySlug(params.slug);
+  const { slug } = await params;
+  const author = getAuthorBySlug(slug);
 
   if (!author) {
     return {
@@ -26,9 +27,10 @@ export async function generateMetadata({
   };
 }
 
-export default function AuthorPage({ params }: AuthorPageProps) {
-  const author = getAuthorBySlug(params.slug);
-  const posts = getPostsByAuthor(params.slug);
+export default async function AuthorPage({ params }: AuthorPageProps) {
+  const { slug } = await params;
+  const author = getAuthorBySlug(slug);
+  const posts = getPostsByAuthor(slug);
 
   if (!author) {
     notFound();
