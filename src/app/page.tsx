@@ -8,11 +8,11 @@ import { getPaginatedPosts } from "@/lib/posts";
 import { getAllCategories, getFeaturedPosts } from "@/lib/mdx";
 
 export const metadata: Metadata = {
-  title: "PSI Athletic Trainer Blog | Military Healthcare Career Resources",
+  title: "Athletic Trainer Blog | Military Healthcare Career Resources",
   description:
-    "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities with PSI.",
+    "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities in Army H2F and Marine Corps SMIP programs.",
   openGraph: {
-    title: "PSI Athletic Trainer Blog",
+    title: "Athletic Trainer Career Resources | AthleticTrainerJob.com",
     description:
       "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities.",
     type: "website",

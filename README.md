@@ -1,6 +1,6 @@
-# PSI Athletic Trainer Blog
+# AthleticTrainerJob.com Blog
 
-A Next.js 14+ blog application for Planned Systems International, deployed at `athletictrainerjob.com/blog`. This blog serves as the organic content marketing channel for PSI's athletic trainer recruitment efforts, focusing on military healthcare careers in Army H2F and Marine Corps SMIP programs.
+A Next.js 14+ blog application for Cognito Systems (a PSI joint venture), deployed at `athletictrainerjob.com/blog`. This blog serves as the organic content marketing channel for athletic trainer recruitment, focusing on military healthcare careers in Army H2F and Marine Corps SMIP programs.
 
 ## Project Overview
 
@@ -201,15 +201,17 @@ The blog uses PSI's exact brand colors:
 
 ### Typography
 
-- **Font Family:** Arial, system sans-serif
+- **Font Family:** Modern system sans-serif stack (SF Pro, Segoe UI, Roboto, etc.)
 - **Body Text:** 16px minimum, 1.7 line height
-- **Headings:** Navy color, semibold to bold weight
+- **Headings:** Primary blue color, semibold to bold weight
 
 ### Components
 
-- **Buttons:** Use `btn-primary`, `btn-accent`, or `btn-ghost` classes
-- **Category Pills:** Use `category-pill` class
+- **Buttons:** Use `btn-primary` (blue), `btn-accent` (green), or `btn-ghost` classes
+- **Cards:** Rounded-xl corners with soft shadows
+- **Category Pills:** Use `category-pill` class with blue background
 - **Containers:** Use `<Container>` component with maxWidth prop
+- **Gradients:** Hero sections use gradient backgrounds (primary to blue-800)
 
 ## SEO Features
 

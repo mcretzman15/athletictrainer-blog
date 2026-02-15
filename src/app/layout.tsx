@@ -4,8 +4,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "PSI Athletic Trainer Blog",
-  description: "Career insights and resources for athletic trainers exploring military healthcare opportunities",
+  title: "Athletic Trainer Career Resources | AthleticTrainerJob.com",
+  description: "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities with Army H2F and Marine Corps SMIP programs.",
 };
 
 export default function RootLayout({
