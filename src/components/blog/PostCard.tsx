@@ -35,7 +35,7 @@ export default function PostCard({ post }: PostCardProps) {
         </div>
 
         <Link href={`/blog/${frontmatter.slug}`}>
-          <h3 className="text-xl font-semibold text-dark-text mb-3 group-hover:text-navy transition-colors line-clamp-2">
+          <h3 className="text-xl font-semibold text-dark-text mb-3 group-hover:text-primary transition-colors line-clamp-2">
             {frontmatter.title}
           </h3>
         </Link>

@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items, currentPage }: BreadcrumbsProps) {
           {index > 0 && <span className="mx-2">/</span>}
           <Link
             href={item.href}
-            className="hover:text-navy transition-colors"
+            className="hover:text-primary transition-colors"
           >
             {item.label}
           </Link>

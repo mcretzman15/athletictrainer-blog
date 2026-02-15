@@ -73,8 +73,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   heading.level === 3 ? "pl-4" : ""
                 } ${
                   activeId === heading.id
-                    ? "text-psi-red font-medium"
-                    : "text-gray-text hover:text-navy"
+                    ? "text-accent font-medium"
+                    : "text-gray-text hover:text-primary"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -100,8 +100,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   heading.level === 3 ? "pl-4" : ""
                 } ${
                   activeId === heading.id
-                    ? "text-psi-red font-medium"
-                    : "text-gray-text hover:text-navy"
+                    ? "text-accent font-medium"
+                    : "text-gray-text hover:text-primary"
                 }`}
               >
                 {heading.text}
