@@ -129,8 +129,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
             {/* Main Content */}
             <div className="lg:col-span-3">
               <div className="max-w-content">
-                <TableOfContents headings={headings} />
-
                 <div className="prose prose-lg max-w-none">
                   {mdxContent}
                 </div>
