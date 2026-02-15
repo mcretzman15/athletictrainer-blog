@@ -1,8 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  basePath: '/blog',
-  assetPrefix: '/blog',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   images: {
     formats: ['image/webp', 'image/avif'],
