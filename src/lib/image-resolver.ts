@@ -69,9 +69,9 @@ export async function resolvePostImage(post: PostFrontmatter): Promise<{
           },
         });
 
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
           stream.pipe(fileStream);
-          fileStream.on("finish", resolve);
+          fileStream.on("finish", () => resolve());
           fileStream.on("error", reject);
         });
 
