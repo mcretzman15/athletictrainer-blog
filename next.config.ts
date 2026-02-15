@@ -2,7 +2,6 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  output: 'standalone',
   images: {
     formats: ['image/webp', 'image/avif'],
     remotePatterns: [
@@ -32,12 +31,6 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
-  },
-  // Ensure content directory is included in the build
-  experimental: {
-    outputFileTracingIncludes: {
-      '/': ['./content/**/*'],
-    },
   },
 };
 
