@@ -7,6 +7,8 @@ const config: OpenNextConfig = {
       converter: "edge",
       proxyExternalRequest: "fetch",
       incrementalCache: "dummy",
+      tagCache: "dummy",
+      queue: "dummy",
     },
   },
 };
