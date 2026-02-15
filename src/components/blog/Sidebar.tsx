@@ -9,8 +9,8 @@ export default function Sidebar({ featuredPosts }: SidebarProps) {
   return (
     <aside className="space-y-8">
       {/* Featured Articles */}
-      <div className="bg-white rounded-lg border border-border-gray p-6">
-        <h3 className="text-lg font-semibold text-navy mb-4">
+      <div className="bg-white rounded-xl border border-border-gray p-6 shadow-sm">
+        <h3 className="text-lg font-semibold text-primary mb-4">
           Featured Articles
         </h3>
         <div className="space-y-4">
@@ -20,7 +20,7 @@ export default function Sidebar({ featuredPosts }: SidebarProps) {
               href={`/blog/${post.frontmatter.slug}`}
               className="block group"
             >
-              <h4 className="text-sm font-medium text-dark-text group-hover:text-navy transition-colors line-clamp-2 mb-1">
+              <h4 className="text-sm font-medium text-dark-text group-hover:text-primary transition-colors line-clamp-2 mb-1">
                 {post.frontmatter.title}
               </h4>
               <span className="text-xs text-gray-text">
@@ -32,9 +32,9 @@ export default function Sidebar({ featuredPosts }: SidebarProps) {
       </div>
 
       {/* Apply Now CTA */}
-      <div className="bg-navy text-white rounded-lg p-6">
+      <div className="bg-gradient-to-br from-primary to-blue-800 text-white rounded-xl p-6 shadow-lg">
         <h3 className="text-lg font-semibold mb-3">Ready to Apply?</h3>
-        <p className="text-sm text-gray-200 mb-4">
+        <p className="text-sm text-blue-100 mb-4">
           Join our team of Athletic Trainers serving in military healthcare
           programs across the United States.
         </p>
@@ -48,8 +48,8 @@ export default function Sidebar({ featuredPosts }: SidebarProps) {
       </div>
 
       {/* Newsletter Signup */}
-      <div className="bg-light-gray rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-navy mb-3">
+      <div className="bg-light-gray rounded-xl p-6 border border-border-gray">
+        <h3 className="text-lg font-semibold text-primary mb-3">
           Stay Informed
         </h3>
         <p className="text-sm text-gray-text mb-4">

@@ -68,13 +68,13 @@ export default async function CategoryPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-navy text-white py-16 md:py-20">
+      <section className="bg-gradient-to-r from-primary to-blue-800 text-white py-16 md:py-20">
         <Container>
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
               {currentCategory}
             </h1>
-            <p className="text-lg md:text-xl text-gray-200">
+            <p className="text-lg md:text-xl text-blue-100">
               Explore articles about {currentCategory.toLowerCase()} for
               athletic trainers in military healthcare.
             </p>
@@ -93,7 +93,7 @@ export default async function CategoryPage({
       </section>
 
       {/* Main Content */}
-      <section className="py-12 bg-light-gray">
+      <section className="py-12 bg-white">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Posts Grid */}

@@ -11,7 +11,7 @@ export default function PostCard({ post }: PostCardProps) {
   const { frontmatter } = post;
 
   return (
-    <article className="bg-white rounded-lg border border-border-gray hover:shadow-lg transition-shadow overflow-hidden group">
+    <article className="bg-white rounded-xl border border-border-gray hover:shadow-xl transition-all overflow-hidden group">
       <Link href={`/blog/${frontmatter.slug}`}>
         <div className="relative aspect-video overflow-hidden">
           <Image
