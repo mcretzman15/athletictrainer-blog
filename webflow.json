@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.webflow.com/schemas/webflow.json",
+  "framework": "nextjs",
+  "buildSettings": {
+    "buildCommand": "npm run build",
+    "installCommand": "npm install",
+    "outputDirectory": ".next"
+  },
+  "runtime": {
+    "type": "nodejs",
+    "version": "22"
+  }
+}
