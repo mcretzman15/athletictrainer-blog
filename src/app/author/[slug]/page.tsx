@@ -39,7 +39,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
   return (
     <>
       {/* Author Hero */}
-      <section className="bg-navy text-white py-16">
+      <section className="bg-gradient-to-r from-primary to-blue-800 text-white py-16">
         <Container>
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="flex-shrink-0">
@@ -52,7 +52,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                     className="object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-navy text-4xl font-bold">
+                  <div className="w-full h-full flex items-center justify-center text-primary text-4xl font-bold">
                     {author.name.charAt(0)}
                   </div>
                 )}
@@ -62,8 +62,8 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
               <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">
                 {author.name}
               </h1>
-              <p className="text-xl text-gray-200 mb-4">{author.title}</p>
-              <p className="text-gray-200 max-w-2xl">{author.bio}</p>
+              <p className="text-xl text-blue-100 mb-4">{author.title}</p>
+              <p className="text-blue-100 max-w-2xl">{author.bio}</p>
               {(author.linkedin || author.twitter) && (
                 <div className="flex gap-4 mt-6 justify-center md:justify-start">
                   {author.linkedin && (
@@ -71,7 +71,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                       href={author.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-gray-300 transition-colors"
+                      className="text-white hover:text-blue-200 transition-colors"
                     >
                       <svg
                         className="w-6 h-6"
@@ -87,7 +87,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                       href={author.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-gray-300 transition-colors"
+                      className="text-white hover:text-blue-200 transition-colors"
                     >
                       <svg
                         className="w-6 h-6"
@@ -106,9 +106,9 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
       </section>
 
       {/* Author's Posts */}
-      <section className="py-12 bg-light-gray">
+      <section className="py-12 bg-white">
         <Container>
-          <h2 className="text-3xl font-bold text-navy mb-8">
+          <h2 className="text-3xl font-bold text-primary mb-8">
             Articles by {author.name}
           </h2>
           {posts.length === 0 ? (

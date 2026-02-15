@@ -41,10 +41,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   return (
     <>
       {/* Mobile: Collapsible */}
-      <div className="lg:hidden bg-light-gray rounded-lg p-4 mb-8">
+      <div className="lg:hidden bg-light-gray rounded-xl p-4 mb-8 border border-border-gray">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-between w-full text-left font-semibold text-navy"
+          className="flex items-center justify-between w-full text-left font-semibold text-primary"
         >
           <span>Table of Contents</span>
           <svg
@@ -87,8 +87,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
       {/* Desktop: Sticky Sidebar */}
       <div className="hidden lg:block sticky top-24">
-        <div className="bg-light-gray rounded-lg p-6">
-          <h3 className="text-sm font-semibold text-navy mb-4 uppercase tracking-wide">
+        <div className="bg-light-gray rounded-xl p-6 border border-border-gray">
+          <h3 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wide">
             Table of Contents
           </h3>
           <nav className="space-y-2">

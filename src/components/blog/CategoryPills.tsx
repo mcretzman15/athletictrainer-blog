@@ -20,7 +20,7 @@ export default function CategoryPills({
       <Link
         href="/blog"
         className={`category-pill whitespace-nowrap ${
-          isIndexPage && !currentCategory ? "bg-navy text-white" : ""
+          isIndexPage && !currentCategory ? "bg-primary text-white shadow-md" : ""
         }`}
       >
         All
@@ -34,7 +34,7 @@ export default function CategoryPills({
             key={category}
             href={`/blog/category/${slug}`}
             className={`category-pill whitespace-nowrap ${
-              isActive ? "bg-navy text-white" : ""
+              isActive ? "bg-primary text-white shadow-md" : ""
             }`}
           >
             {category}

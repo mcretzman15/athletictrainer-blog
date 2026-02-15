@@ -9,9 +9,9 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
   if (posts.length === 0) return null;
 
   return (
-    <section className="py-12 bg-light-gray">
+    <section className="py-12 bg-light-gray border-t border-border-gray">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-navy mb-8">Related Articles</h2>
+        <h2 className="text-3xl font-bold text-primary mb-8">Related Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {posts.map((post) => (
             <PostCard key={post.frontmatter.slug} post={post} />

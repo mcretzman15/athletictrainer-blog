@@ -18,7 +18,7 @@ export default function ComparisonTable({ children }: ComparisonTableProps) {
 
 // Also export styled table components for use inside ComparisonTable
 export function TableHead({ children }: { children: React.ReactNode }) {
-  return <thead className="bg-navy">{children}</thead>;
+  return <thead className="bg-primary">{children}</thead>;
 }
 
 export function TableBody({ children }: { children: React.ReactNode }) {

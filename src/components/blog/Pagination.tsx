@@ -22,12 +22,12 @@ export default function Pagination({
       {hasPrevPage ? (
         <Link
           href={currentPage === 2 ? basePath : `${basePath}?page=${currentPage - 1}`}
-          className="px-4 py-2 border border-border-gray rounded-md hover:bg-light-gray transition-colors"
+          className="px-4 py-2 border border-border-gray rounded-lg hover:bg-light-gray transition-colors"
         >
           Previous
         </Link>
       ) : (
-        <span className="px-4 py-2 border border-border-gray rounded-md text-gray-text cursor-not-allowed opacity-50">
+        <span className="px-4 py-2 border border-border-gray rounded-lg text-gray-text cursor-not-allowed opacity-50">
           Previous
         </span>
       )}
@@ -42,9 +42,9 @@ export default function Pagination({
             <Link
               key={page}
               href={href}
-              className={`px-4 py-2 rounded-md transition-colors ${
+              className={`px-4 py-2 rounded-lg transition-colors ${
                 isActive
-                  ? "bg-navy text-white font-semibold"
+                  ? "bg-primary text-white font-semibold shadow-sm"
                   : "border border-border-gray hover:bg-light-gray"
               }`}
             >
@@ -58,12 +58,12 @@ export default function Pagination({
       {hasNextPage ? (
         <Link
           href={`${basePath}?page=${currentPage + 1}`}
-          className="px-4 py-2 border border-border-gray rounded-md hover:bg-light-gray transition-colors"
+          className="px-4 py-2 border border-border-gray rounded-lg hover:bg-light-gray transition-colors"
         >
           Next
         </Link>
       ) : (
-        <span className="px-4 py-2 border border-border-gray rounded-md text-gray-text cursor-not-allowed opacity-50">
+        <span className="px-4 py-2 border border-border-gray rounded-lg text-gray-text cursor-not-allowed opacity-50">
           Next
         </span>
       )}
