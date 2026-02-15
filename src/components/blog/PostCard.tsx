@@ -14,7 +14,15 @@ export default function PostCard({ post }: PostCardProps) {
     <article className="bg-white rounded-xl border border-border-gray hover:shadow-xl transition-all overflow-hidden group">
       <Link href={`/${frontmatter.slug}`}>
         <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31]">
-          {/* Gradient background serves as placeholder for missing images */}
+          {frontmatter.featuredImage && (
+            <Image
+              src={frontmatter.featuredImage}
+              alt={frontmatter.featuredImageAlt || frontmatter.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          )}
         </div>
       </Link>
 
