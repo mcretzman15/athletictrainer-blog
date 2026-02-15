@@ -49,7 +49,7 @@ export default async function BlogIndex({ searchParams }: BlogIndexProps) {
       {/* Category Filters */}
       <section className="bg-white border-b border-border-gray py-6">
         <Container>
-          <CategoryPills categories={categories} currentCategory={null} />
+          <CategoryPills categories={categories} currentCategory={undefined} />
         </Container>
       </section>
 
