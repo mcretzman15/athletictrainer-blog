@@ -11,10 +11,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "1.6.5",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.1.6",
+    "@opennextjs/cloudflare": "^1.6.5",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.6",
