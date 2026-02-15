@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "/blog",
+  assetPrefix: "/blog",
   output: "standalone",
   pageExtensions: ["js", "jsx", "ts", "tsx"],
   images: {
