@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "/blog",
-  output: "standalone",
+  // output: "standalone", // Commented out for local dev
   pageExtensions: ["js", "jsx", "ts", "tsx"],
   images: {
     formats: ["image/webp", "image/avif"],
