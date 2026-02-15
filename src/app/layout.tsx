@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Athletic Trainer Career Resources | AthleticTrainerJob.com",
   description: "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities with Army H2F and Marine Corps SMIP programs.",
+  metadataBase: new URL('https://www.athletictrainerjob.com'),
 };
 
 export default function RootLayout({

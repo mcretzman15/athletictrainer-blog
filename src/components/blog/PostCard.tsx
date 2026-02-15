@@ -13,13 +13,16 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <article className="bg-white rounded-xl border border-border-gray hover:shadow-xl transition-all overflow-hidden group">
       <Link href={`/blog/${frontmatter.slug}`}>
-        <div className="relative aspect-video overflow-hidden">
+        <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31] flex items-center justify-center">
           <Image
             src={frontmatter.featuredImage}
             alt={frontmatter.featuredImageAlt}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         </div>
       </Link>
