@@ -23,9 +23,12 @@ export const dynamic = 'force-static';
 
 export default async function BlogIndex() {
   // Always show page 1 for static generation
+  console.log('[PAGE] BlogIndex rendering...');
   const { posts, pagination } = getPaginatedPosts(1, 9);
+  console.log('[PAGE] Received', posts.length, 'posts from getPaginatedPosts');
   const categories = getAllCategories();
   const featuredPosts = getFeaturedPosts(4);
+  console.log('[PAGE] Categories:', categories.length, 'Featured:', featuredPosts.length);
 
   return (
     <>
