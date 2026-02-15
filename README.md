@@ -6,9 +6,19 @@ A Next.js 14+ blog application for Cognito Systems (a PSI joint venture), deploy
 
 - **Framework:** Next.js 14+ with App Router
 - **Content System:** MDX files with frontmatter
-- **Styling:** Tailwind CSS with PSI design tokens
+- **Styling:** Tailwind CSS with army green design tokens
 - **Deployment:** Vercel with `/blog` base path
 - **TypeScript:** Full type safety throughout
+- **Image Systems:** Dynamic OG images + Unsplash API integration
+
+## ✨ Automated Image Features
+
+**No manual image creation required!**
+
+1. **Dynamic OG Images** - Auto-generated social sharing cards
+2. **Unsplash Integration** - Auto-fetches professional featured images
+
+See **[IMAGE_SYSTEMS.md](./IMAGE_SYSTEMS.md)** for setup and usage.
 
 ## Getting Started
 
