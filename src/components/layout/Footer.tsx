@@ -20,7 +20,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/blog"
+                  href="/"
                   className="text-gray-text hover:text-primary transition-colors"
                 >
                   Blog

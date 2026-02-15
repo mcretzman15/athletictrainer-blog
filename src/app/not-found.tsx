@@ -15,7 +15,7 @@ export default function NotFound() {
             been moved or deleted.
           </p>
           <div className="flex gap-4 justify-center">
-            <Link href="/blog" className="btn-primary">
+            <Link href="/" className="btn-primary">
               Back to Blog
             </Link>
             <Link

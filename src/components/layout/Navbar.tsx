@@ -32,7 +32,7 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href="/blog"
+              href="/"
               className="text-gray-text hover:text-primary font-medium transition-colors"
             >
               Blog
@@ -79,7 +79,7 @@ export default function Navbar() {
         <div id="mobile-menu" className="hidden md:hidden pb-4 bg-white">
           <div className="flex flex-col space-y-4">
             <Link
-              href="/blog"
+              href="/"
               className="text-gray-text hover:text-primary font-medium"
             >
               Blog

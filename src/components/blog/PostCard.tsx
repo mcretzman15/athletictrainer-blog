@@ -12,7 +12,7 @@ export default function PostCard({ post }: PostCardProps) {
 
   return (
     <article className="bg-white rounded-xl border border-border-gray hover:shadow-xl transition-all overflow-hidden group">
-      <Link href={`/blog/${frontmatter.slug}`}>
+      <Link href={`/${frontmatter.slug}`}>
         <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31]">
           {/* Gradient background serves as placeholder for missing images */}
         </div>
@@ -21,14 +21,14 @@ export default function PostCard({ post }: PostCardProps) {
       <div className="p-6">
         <div className="mb-3">
           <Link
-            href={`/blog/category/${frontmatter.category.toLowerCase().replace(/\s+/g, "-")}`}
+            href={`/category/${frontmatter.category.toLowerCase().replace(/\s+/g, "-")}`}
             className="category-pill"
           >
             {frontmatter.category}
           </Link>
         </div>
 
-        <Link href={`/blog/${frontmatter.slug}`}>
+        <Link href={`/${frontmatter.slug}`}>
           <h3 className="text-xl font-semibold text-dark-text mb-3 group-hover:text-primary transition-colors line-clamp-2">
             {frontmatter.title}
           </h3>

@@ -18,7 +18,7 @@ export default function CategoryPills({
   return (
     <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
       <Link
-        href="/blog"
+        href="/"
         className={`category-pill whitespace-nowrap ${
           isIndexPage && !currentCategory ? "bg-primary text-white shadow-md" : ""
         }`}
@@ -32,7 +32,7 @@ export default function CategoryPills({
         return (
           <Link
             key={category}
-            href={`/blog/category/${slug}`}
+            href={`/category/${slug}`}
             className={`category-pill whitespace-nowrap ${
               isActive ? "bg-primary text-white shadow-md" : ""
             }`}
