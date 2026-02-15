@@ -8,18 +8,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: "#1B3A5F",
-        "psi-red": "#E31837",
-        "dark-text": "#1A1A2E",
-        "gray-text": "#4A4A5A",
-        "light-gray": "#F5F5F7",
-        "border-gray": "#E0E0E0",
+        // Primary brand colors - modern, approachable
+        primary: "#1E3A8A", // Deep blue (lighter than old navy)
+        accent: "#10B981", // Green/teal accent
+        secondary: "#F59E0B", // Warm accent
+        
+        // Text colors
+        "dark-text": "#111827",
+        "gray-text": "#6B7280",
+        "light-gray": "#F9FAFB",
+        "border-gray": "#E5E7EB",
         "card-bg": "#FFFFFF",
-        "tag-bg": "#EEF2F7",
-        "tag-text": "#1B3A5F",
+        
+        // Legacy aliases for compatibility
+        navy: "#1E3A8A",
+        "psi-red": "#10B981",
+        "tag-bg": "#DBEAFE",
+        "tag-text": "#1E3A8A",
       },
       fontFamily: {
-        sans: ["Arial", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Helvetica", "sans-serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
       },
       fontSize: {
         xs: "0.75rem",
@@ -58,50 +66,50 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            color: "#1A1A2E",
+            color: "#111827",
             lineHeight: "1.7",
             maxWidth: "760px",
             fontSize: "1rem",
             h1: {
-              color: "#1B3A5F",
+              color: "#1E3A8A",
               fontWeight: "700",
               lineHeight: "1.25",
             },
             h2: {
-              color: "#1B3A5F",
+              color: "#1E3A8A",
               fontWeight: "600",
               lineHeight: "1.25",
             },
             h3: {
-              color: "#1B3A5F",
+              color: "#1E3A8A",
               fontWeight: "600",
               lineHeight: "1.3",
             },
             h4: {
-              color: "#1B3A5F",
+              color: "#1E3A8A",
               fontWeight: "600",
             },
             a: {
-              color: "#1B3A5F",
+              color: "#1E3A8A",
               textDecoration: "underline",
               "&:hover": {
-                color: "#E31837",
+                color: "#10B981",
               },
             },
             strong: {
-              color: "#1A1A2E",
+              color: "#111827",
               fontWeight: "600",
             },
             blockquote: {
-              borderLeftColor: "#1B3A5F",
+              borderLeftColor: "#10B981",
               fontStyle: "normal",
-              backgroundColor: "#F5F5F7",
+              backgroundColor: "#F9FAFB",
               padding: "1rem 1.5rem",
               borderRadius: "0.5rem",
             },
             code: {
-              color: "#1B3A5F",
-              backgroundColor: "#F5F5F7",
+              color: "#1E3A8A",
+              backgroundColor: "#F9FAFB",
               padding: "0.2rem 0.4rem",
               borderRadius: "0.25rem",
               fontWeight: "500",

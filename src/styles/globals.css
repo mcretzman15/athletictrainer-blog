@@ -3,19 +3,24 @@
 @tailwind utilities;
 
 :root {
-  /* Colors */
-  --navy: #1B3A5F;
-  --red: #E31837;
+  /* Colors - Modern, Approachable Palette */
+  --primary: #1E3A8A;
+  --accent: #10B981;
+  --secondary: #F59E0B;
   --white: #FFFFFF;
-  --dark-text: #1A1A2E;
-  --gray-text: #4A4A5A;
-  --light-gray: #F5F5F7;
-  --border-gray: #E0E0E0;
+  --dark-text: #111827;
+  --gray-text: #6B7280;
+  --light-gray: #F9FAFB;
+  --border-gray: #E5E7EB;
   --card-bg: #FFFFFF;
-  --link: #1B3A5F;
-  --link-hover: #E31837;
-  --tag-bg: #EEF2F7;
-  --tag-text: #1B3A5F;
+  --link: #1E3A8A;
+  --link-hover: #10B981;
+  --tag-bg: #DBEAFE;
+  --tag-text: #1E3A8A;
+  
+  /* Legacy aliases */
+  --navy: #1E3A8A;
+  --red: #10B981;
 
   /* Typography */
   --text-xs: 0.75rem;
@@ -58,30 +63,30 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-navy font-semibold;
+    @apply text-primary font-semibold;
     line-height: var(--leading-heading);
   }
 
   a {
-    @apply text-navy hover:text-psi-red transition-colors;
+    @apply text-primary hover:text-accent transition-colors;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-navy text-white rounded-md px-6 py-3 font-semibold hover:bg-opacity-90 transition-all;
+    @apply bg-primary text-white rounded-lg px-6 py-3 font-semibold hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md;
   }
 
   .btn-accent {
-    @apply bg-psi-red text-white rounded-md px-6 py-3 font-semibold hover:bg-opacity-90 transition-all;
+    @apply bg-accent text-white rounded-lg px-6 py-3 font-semibold hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md;
   }
 
   .btn-ghost {
-    @apply border-2 border-navy text-navy rounded-md px-6 py-3 font-semibold hover:bg-navy hover:text-white transition-all;
+    @apply border-2 border-primary text-primary rounded-lg px-6 py-3 font-semibold hover:bg-primary hover:text-white transition-all;
   }
 
   .category-pill {
-    @apply bg-tag-bg text-tag-text px-3 py-1 rounded-full text-sm font-medium inline-block;
+    @apply bg-tag-bg text-tag-text px-4 py-1.5 rounded-full text-sm font-medium inline-block hover:bg-opacity-80 transition-colors;
   }
 }
 

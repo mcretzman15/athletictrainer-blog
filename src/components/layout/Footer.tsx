@@ -2,26 +2,26 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white mt-auto">
+    <footer className="bg-light-gray border-t border-border-gray mt-auto">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & About */}
           <div className="col-span-1 md:col-span-2">
-            <div className="text-2xl font-bold mb-4">PSI</div>
-            <p className="text-gray-300 text-sm mb-4">
-              Planned Systems International connects certified Athletic Trainers
-              with meaningful careers in military healthcare programs.
+            <div className="text-2xl font-bold mb-4 text-primary">AthleticTrainerJob.com</div>
+            <p className="text-gray-text text-sm mb-4">
+              Cognito Systems, a Planned Systems International (PSI) joint venture, 
+              connects certified Athletic Trainers with meaningful careers in military healthcare programs.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4 text-dark-text">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/blog"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-text hover:text-primary transition-colors"
                 >
                   Blog
                 </Link>
@@ -29,7 +29,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="https://www.athletictrainerjob.com/job-description"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-text hover:text-primary transition-colors"
                 >
                   Job Description
                 </Link>
@@ -37,7 +37,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="https://www.athletictrainerjob.com/job-description#apply-main"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-text hover:text-primary transition-colors"
                 >
                   Apply Now
                 </Link>
@@ -47,13 +47,13 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <h4 className="font-semibold mb-4 text-dark-text">Connect</h4>
             <div className="flex space-x-4">
               <a
                 href="https://www.linkedin.com/company/planned-systems-international"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-text hover:text-primary transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -68,7 +68,7 @@ export default function Footer() {
                 href="https://www.facebook.com/PlannedSystemsInternational"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-text hover:text-primary transition-colors"
                 aria-label="Facebook"
               >
                 <svg
@@ -83,7 +83,7 @@ export default function Footer() {
                 href="https://twitter.com/psi_hq"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-text hover:text-primary transition-colors"
                 aria-label="X/Twitter"
               >
                 <svg
@@ -99,14 +99,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-sm text-gray-400">
+        <div className="border-t border-border-gray mt-8 pt-8 text-sm text-gray-text">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2026 PSI. All rights reserved.</p>
+            <p>© 2026 Cognito Systems / PSI. All rights reserved.</p>
             <p className="text-xs max-w-2xl text-center md:text-right">
-              PSI is an Equal Opportunity Employer. All qualified applicants will
-              receive consideration for employment without regard to race, color,
-              religion, sex, sexual orientation, gender identity, national origin,
-              disability, or protected veteran status.
+              It is our policy to promote equal employment opportunities. All personnel decisions 
+              are made without regard to race, color, religion, age, sex, sexual orientation, 
+              pregnancy, gender identity, genetic information, national origin, citizenship status, 
+              veteran status, disability, or any other characteristic protected by applicable law.
             </p>
           </div>
         </div>

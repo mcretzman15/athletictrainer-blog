@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-navy transition-shadow ${
+      className={`sticky top-0 z-50 bg-white border-b border-border-gray transition-shadow ${
         isScrolled ? "shadow-md" : ""
       }`}
     >
@@ -26,22 +26,22 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="text-white font-bold text-xl">PSI</div>
+            <div className="text-primary font-bold text-xl">AthleticTrainerJob.com</div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/blog"
-              className="text-white hover:text-gray-200 font-medium transition-colors"
+              className="text-gray-text hover:text-primary font-medium transition-colors"
             >
               Blog
             </Link>
             <Link
               href="https://www.athletictrainerjob.com/job-description"
-              className="text-white hover:text-gray-200 font-medium transition-colors"
+              className="text-gray-text hover:text-primary font-medium transition-colors"
             >
-              Careers
+              Job Description
             </Link>
             <Link
               href="https://www.athletictrainerjob.com/job-description#apply-main"
@@ -54,7 +54,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white p-2"
+            className="md:hidden text-primary p-2"
             aria-label="Open menu"
             onClick={() => {
               const menu = document.getElementById("mobile-menu");
@@ -76,19 +76,19 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        <div id="mobile-menu" className="hidden md:hidden pb-4">
+        <div id="mobile-menu" className="hidden md:hidden pb-4 bg-white">
           <div className="flex flex-col space-y-4">
             <Link
               href="/blog"
-              className="text-white hover:text-gray-200 font-medium"
+              className="text-gray-text hover:text-primary font-medium"
             >
               Blog
             </Link>
             <Link
               href="https://www.athletictrainerjob.com/job-description"
-              className="text-white hover:text-gray-200 font-medium"
+              className="text-gray-text hover:text-primary font-medium"
             >
-              Careers
+              Job Description
             </Link>
             <Link
               href="https://www.athletictrainerjob.com/job-description#apply-main"
