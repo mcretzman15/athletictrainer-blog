@@ -38,6 +38,11 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
 
   const { frontmatter } = post;
 
+  // Build the dynamic OG image URL
+  const ogImageUrl = frontmatter.ogImage
+    ? frontmatter.ogImage // Use custom OG image if provided in frontmatter
+    : `/og?title=${encodeURIComponent(frontmatter.title)}&category=${encodeURIComponent(frontmatter.category)}`;
+
   return {
     title: frontmatter.seoTitle || frontmatter.title,
     description: frontmatter.seoDescription || frontmatter.description,
@@ -48,8 +53,10 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
       url: frontmatter.canonicalUrl,
       images: [
         {
-          url: frontmatter.ogImage || frontmatter.featuredImage,
-          alt: frontmatter.featuredImageAlt,
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: frontmatter.featuredImageAlt || frontmatter.title,
         },
       ],
       publishedTime: frontmatter.date,
@@ -61,7 +68,7 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
       card: "summary_large_image",
       title: frontmatter.seoTitle || frontmatter.title,
       description: frontmatter.seoDescription || frontmatter.description,
-      images: [frontmatter.ogImage || frontmatter.featuredImage],
+      images: [ogImageUrl],
     },
     alternates: {
       canonical: frontmatter.canonicalUrl,
@@ -107,6 +114,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
         category={frontmatter.category}
         date={formatDate(frontmatter.date)}
         readingTime={frontmatter.readingTime || 5}
+        imageCredit={frontmatter.imageCredit}
       />
 
       <ShareButtons url={fullUrl} title={frontmatter.title} />
