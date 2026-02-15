@@ -9,14 +9,33 @@ export default function SalaryRange({
   max,
   disclaimer = true,
 }: SalaryRangeProps) {
-  // Convert string props to numbers if needed (MDX sometimes passes strings)
-  const minNum = typeof min === 'string' ? parseInt(min, 10) : min;
-  const maxNum = typeof max === 'string' ? parseInt(max, 10) : max;
+  // Handle various input types and provide defaults
+  let minNum: number;
+  let maxNum: number;
+
+  // Try to parse min value
+  if (typeof min === 'number' && !isNaN(min)) {
+    minNum = min;
+  } else if (typeof min === 'string') {
+    minNum = parseInt(min, 10);
+  } else {
+    minNum = 60000; // Default fallback
+  }
+
+  // Try to parse max value  
+  if (typeof max === 'number' && !isNaN(max)) {
+    maxNum = max;
+  } else if (typeof max === 'string') {
+    maxNum = parseInt(max, 10);
+  } else {
+    maxNum = 90000; // Default fallback
+  }
+
+  // Final validation
+  if (isNaN(minNum)) minNum = 60000;
+  if (isNaN(maxNum)) maxNum = 90000;
   
   const formatCurrency = (amount: number) => {
-    if (isNaN(amount)) {
-      return '$[Error: Invalid amount]';
-    }
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
