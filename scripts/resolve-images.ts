@@ -1,7 +1,11 @@
+import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { resolvePostImage } from "../src/lib/image-resolver";
+
+// Load .env.local for local development
+dotenv.config({ path: path.join(process.cwd(), ".env.local") });
 
 async function main() {
   console.log("🖼️  Resolving blog post images...\n");
