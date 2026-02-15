@@ -16,9 +16,9 @@ export default function LocationCard({
   description,
 }: LocationCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-border-gray overflow-hidden hover:shadow-lg transition-shadow my-6">
+    <div className="bg-white rounded-xl border border-border-gray overflow-hidden hover:shadow-xl transition-all my-6">
       {image && (
-        <div className="aspect-video bg-navy relative">
+        <div className="aspect-video bg-primary relative">
           <img
             src={image}
             alt={`${name}, ${state}`}
@@ -29,7 +29,7 @@ export default function LocationCard({
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h3 className="text-xl font-semibold text-navy mb-1">{name}</h3>
+            <h3 className="text-xl font-semibold text-primary mb-1">{name}</h3>
             <p className="text-gray-text text-sm">{state}</p>
           </div>
           <span className="category-pill">{program}</span>
@@ -39,7 +39,7 @@ export default function LocationCard({
         )}
         <Link
           href="https://www.athletictrainerjob.com/job-description"
-          className="text-navy hover:text-psi-red font-medium text-sm inline-flex items-center gap-1 transition-colors"
+          className="text-primary hover:text-accent font-medium text-sm inline-flex items-center gap-1 transition-colors"
         >
           View Opportunities
           <span>➜</span>

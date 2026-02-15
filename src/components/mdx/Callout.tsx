@@ -29,10 +29,10 @@ export default function Callout({ type = "info", children }: CalloutProps) {
       text: "text-green-900",
     },
     mission: {
-      bg: "bg-navy",
-      border: "border-navy",
+      bg: "bg-gradient-to-r from-primary to-blue-800",
+      border: "border-primary",
       icon: "🎯",
-      iconBg: "bg-navy",
+      iconBg: "bg-primary",
       text: "text-white",
     },
   };

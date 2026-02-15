@@ -19,10 +19,10 @@ export default function SalaryRange({
   };
 
   return (
-    <div className="bg-light-gray rounded-lg p-6 my-6 border-l-4 border-navy">
+    <div className="bg-light-gray rounded-xl p-6 my-6 border-l-4 border-accent shadow-sm">
       <div className="flex items-center gap-4 mb-2">
         <svg
-          className="w-8 h-8 text-navy flex-shrink-0"
+          className="w-8 h-8 text-accent flex-shrink-0"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -38,7 +38,7 @@ export default function SalaryRange({
           <p className="text-sm font-medium text-gray-text uppercase tracking-wide">
             Salary Range
           </p>
-          <p className="text-3xl font-bold text-navy">
+          <p className="text-3xl font-bold text-primary">
             {formatCurrency(min)} - {formatCurrency(max)}
           </p>
         </div>

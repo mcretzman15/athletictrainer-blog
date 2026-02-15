@@ -14,7 +14,7 @@ export function FAQItem({ question, children }: FAQItemProps) {
     <div className="border-b border-border-gray last:border-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-4 flex items-center justify-between text-left hover:text-navy transition-colors"
+        className="w-full py-4 flex items-center justify-between text-left hover:text-primary transition-colors"
       >
         <span className="font-semibold text-dark-text pr-4">{question}</span>
         <svg
@@ -48,8 +48,8 @@ interface FAQProps {
 
 export default function FAQ({ children }: FAQProps) {
   return (
-    <div className="bg-light-gray rounded-lg p-6 my-8">
-      <h3 className="text-2xl font-bold text-navy mb-6">
+    <div className="bg-light-gray rounded-xl p-6 my-8 border border-border-gray">
+      <h3 className="text-2xl font-bold text-primary mb-6">
         Frequently Asked Questions
       </h3>
       <div className="space-y-2">{children}</div>
