@@ -1,7 +1,7 @@
 interface SalaryRangeProps {
-  min: number;
-  max: number;
-  disclaimer?: boolean;
+  min: number | string;
+  max: number | string;
+  disclaimer?: boolean | string;
 }
 
 export default function SalaryRange({
@@ -9,7 +9,14 @@ export default function SalaryRange({
   max,
   disclaimer = true,
 }: SalaryRangeProps) {
+  // Convert string props to numbers if needed (MDX sometimes passes strings)
+  const minNum = typeof min === 'string' ? parseInt(min, 10) : min;
+  const maxNum = typeof max === 'string' ? parseInt(max, 10) : max;
+  
   const formatCurrency = (amount: number) => {
+    if (isNaN(amount)) {
+      return '$[Error: Invalid amount]';
+    }
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -39,7 +46,7 @@ export default function SalaryRange({
             Salary Range
           </p>
           <p className="text-3xl font-bold text-primary">
-            {formatCurrency(min)} - {formatCurrency(max)}
+            {formatCurrency(minNum)} - {formatCurrency(maxNum)}
           </p>
         </div>
       </div>
