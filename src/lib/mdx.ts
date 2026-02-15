@@ -51,10 +51,15 @@ export interface Author {
 }
 
 export function getPostSlugs(): string[] {
+  console.log('[MDX] Checking posts directory:', postsDirectory);
+  console.log('[MDX] process.cwd():', process.cwd());
   if (!fs.existsSync(postsDirectory)) {
+    console.error('[MDX] Posts directory does not exist:', postsDirectory);
     return [];
   }
-  return fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".mdx"));
+  const files = fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".mdx"));
+  console.log('[MDX] Found', files.length, 'MDX files:', files);
+  return files;
 }
 
 export function getPostBySlug(slug: string): Post | null {
@@ -85,6 +90,7 @@ export function getPostBySlug(slug: string): Post | null {
 
 export function getAllPosts(): Post[] {
   const slugs = getPostSlugs();
+  console.log('[MDX] getAllPosts: found', slugs.length, 'slugs');
   const posts = slugs
     .map((filename) => {
       const slug = filename.replace(/\.mdx$/, "");
@@ -97,6 +103,7 @@ export function getAllPosts(): Post[] {
       return dateB - dateA; // Most recent first
     });
 
+  console.log('[MDX] getAllPosts: returning', posts.length, 'published posts');
   return posts;
 }
 
