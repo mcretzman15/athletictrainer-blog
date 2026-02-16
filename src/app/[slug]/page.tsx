@@ -22,7 +22,7 @@ interface BlogPostProps {
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => ({
-    slug: post.frontmatter.slug,
+    slug: post.slug,
   }));
 }
 
@@ -86,7 +86,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   const { frontmatter, content, headings } = post;
   const author = getAuthorBySlug(frontmatter.author);
-  const relatedPosts = getRelatedPosts(slug, 3);
+  const relatedPosts = getRelatedPosts(slug, frontmatter.category, 3);
   const breadcrumbItems = generateBreadcrumbs(slug, frontmatter.category);
   const fullUrl = frontmatter.canonicalUrl;
 

@@ -16,8 +16,8 @@ export default function Sidebar({ featuredPosts }: SidebarProps) {
         <div className="space-y-4">
           {featuredPosts.map((post) => (
             <Link
-              key={post.frontmatter.slug}
-              href={`/${post.frontmatter.slug}`}
+              key={post.slug}
+              href={`/${post.slug}`}
               className="block group"
             >
               <h4 className="text-sm font-medium text-dark-text group-hover:text-primary transition-colors line-clamp-2 mb-1">

@@ -1,39 +1,26 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { calculateReadingTime, extractHeadings } from "./utils";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { calculateReadingTime, extractHeadings } from './utils';
 
-const postsDirectory = path.join(process.cwd(), "content", "posts");
-const authorsDirectory = path.join(process.cwd(), "content", "authors");
+const postsDirectory = path.join(process.cwd(), 'content', 'posts');
+const authorsDirectory = path.join(process.cwd(), 'content', 'authors');
 
 export interface PostFrontmatter {
   title: string;
-  slug: string;
   description: string;
   date: string;
-  updatedDate?: string;
   author: string;
   category: string;
-  tags: string[];
-  featuredImage: string;
-  featuredImageAlt: string;
-  imageCredit?: string;
+  tags?: string[];
+  featuredImage?: string;
+  published?: boolean;
   readingTime?: number;
-  published: boolean;
-  featured?: boolean;
-  seoTitle?: string;
-  seoDescription?: string;
-  canonicalUrl: string;
-  ogImage?: string;
-  schema: string;
-  funnelStage?: string;
-  persona?: string;
-  primaryKeyword: string;
-  secondaryKeywords?: string[];
-  relatedPosts?: string[];
+  [key: string]: any;
 }
 
 export interface Post {
+  slug: string;
   frontmatter: PostFrontmatter;
   content: string;
   headings: { level: number; text: string; id: string }[];
@@ -44,72 +31,105 @@ export interface Author {
   name: string;
   title: string;
   bio: string;
-  photo: string;
-  email?: string;
-  linkedin?: string;
-  twitter?: string;
-}
-
-export function getPostSlugs(): string[] {
-  if (!fs.existsSync(postsDirectory)) {
-    return [];
-  }
-  return fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".mdx"));
-}
-
-export function getPostBySlug(slug: string): Post | null {
-  try {
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    const frontmatter = data as PostFrontmatter;
-    
-    if (!frontmatter.readingTime) {
-      frontmatter.readingTime = calculateReadingTime(content);
-    }
-
-    const headings = extractHeadings(content);
-
-    return {
-      frontmatter,
-      content,
-      headings,
-    };
-  } catch (error) {
-    console.error(`Error reading post ${slug}:`, error);
-    return null;
-  }
+  image?: string;
+  [key: string]: any;
 }
 
 export function getAllPosts(): Post[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((filename) => {
-      const slug = filename.replace(/\.mdx$/, "");
-      return getPostBySlug(slug);
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+
+  const fileNames = fs.readdirSync(postsDirectory).filter((fn) => fn.endsWith('.mdx'));
+
+  const posts = fileNames
+    .map((fileName) => {
+      const slug = fileName.replace(/\.mdx$/, '');
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+
+      // Skip unpublished posts
+      if (data.published === false) {
+        return null;
+      }
+
+      return {
+        slug,
+        frontmatter: {
+          ...data,
+          readingTime: data.readingTime || calculateReadingTime(content),
+        } as PostFrontmatter,
+        content,
+        headings: extractHeadings(content),
+      };
     })
-    .filter((post): post is Post => post !== null && post.frontmatter.published)
-    .sort((a, b) => {
-      const dateA = new Date(a.frontmatter.date).getTime();
-      const dateB = new Date(b.frontmatter.date).getTime();
-      return dateB - dateA;
-    });
+    .filter((post): post is Post => post !== null);
+
+  // Sort by date, newest first
+  posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 
   return posts;
 }
 
+export function getPostBySlug(slug: string): Post | null {
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
+
+  return {
+    slug,
+    frontmatter: {
+      ...data,
+      readingTime: data.readingTime || calculateReadingTime(content),
+    } as PostFrontmatter,
+    content,
+    headings: extractHeadings(content),
+  };
+}
+
+export function getAuthorBySlug(slug: string): Author | null {
+  const fullPath = path.join(authorsDirectory, `${slug}.json`);
+
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const data = JSON.parse(fileContents);
+
+  return {
+    slug,
+    ...data,
+  };
+}
+
+export function getAllCategories(): string[] {
+  const posts = getAllPosts();
+  const categories = new Set<string>();
+  posts.forEach((post) => {
+    if (post.frontmatter.category) {
+      categories.add(post.frontmatter.category);
+    }
+  });
+  return Array.from(categories).sort();
+}
+
 export function getPostsByCategory(category: string): Post[] {
-  const allPosts = getAllPosts();
-  return allPosts.filter(
-    (post) =>
-      post.frontmatter.category.toLowerCase() === category.toLowerCase()
+  return getAllPosts().filter(
+    (post) => post.frontmatter.category.toLowerCase().replace(/\s+/g, '-') === category.toLowerCase()
   );
 }
 
-export function getPostsByAuthor(authorSlug: string): Post[] {
-  const allPosts = getAllPosts();
-  return allPosts.filter((post) => post.frontmatter.author === authorSlug);
+export function getRelatedPosts(currentSlug: string, category: string, limit: number = 3): Post[] {
+  return getAllPosts()
+    .filter((post) => post.slug !== currentSlug && post.frontmatter.category === category)
+    .slice(0, limit);
 }
 
 export function getFeaturedPosts(limit: number = 3): Post[] {
@@ -117,46 +137,7 @@ export function getFeaturedPosts(limit: number = 3): Post[] {
   return allPosts.filter((post) => post.frontmatter.featured).slice(0, limit);
 }
 
-export function getRelatedPosts(currentSlug: string, limit: number = 3): Post[] {
-  const currentPost = getPostBySlug(currentSlug);
-  if (!currentPost) return [];
-
+export function getPostsByAuthor(authorSlug: string): Post[] {
   const allPosts = getAllPosts();
-  const relatedBySlug = currentPost.frontmatter.relatedPosts || [];
-
-  const explicitlyRelated = relatedBySlug
-    .map((slug) => getPostBySlug(slug))
-    .filter((post): post is Post => post !== null);
-
-  if (explicitlyRelated.length < limit) {
-    const sameCategory = allPosts
-      .filter(
-        (post) =>
-          post.frontmatter.slug !== currentSlug &&
-          post.frontmatter.category === currentPost.frontmatter.category &&
-          !relatedBySlug.includes(post.frontmatter.slug)
-      )
-      .slice(0, limit - explicitlyRelated.length);
-
-    return [...explicitlyRelated, ...sameCategory].slice(0, limit);
-  }
-
-  return explicitlyRelated.slice(0, limit);
-}
-
-export function getAllCategories(): string[] {
-  const allPosts = getAllPosts();
-  const categories = new Set(allPosts.map((post) => post.frontmatter.category));
-  return Array.from(categories).sort();
-}
-
-export function getAuthorBySlug(slug: string): Author | null {
-  try {
-    const fullPath = path.join(authorsDirectory, `${slug}.json`);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    return JSON.parse(fileContents) as Author;
-  } catch (error) {
-    console.error(`Error reading author ${slug}:`, error);
-    return null;
-  }
+  return allPosts.filter((post) => post.frontmatter.author === authorSlug);
 }

@@ -67,9 +67,9 @@ export function searchPosts(query: string): Post[] {
     const descriptionMatch = post.frontmatter.description
       .toLowerCase()
       .includes(lowerQuery);
-    const tagsMatch = post.frontmatter.tags.some((tag) =>
+    const tagsMatch = post.frontmatter.tags?.some((tag) =>
       tag.toLowerCase().includes(lowerQuery)
-    );
+    ) || false;
     const contentMatch = post.content.toLowerCase().includes(lowerQuery);
 
     return titleMatch || descriptionMatch || tagsMatch || contentMatch;

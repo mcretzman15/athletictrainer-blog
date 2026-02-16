@@ -108,7 +108,7 @@ export default async function CategoryPage({
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {posts.map((post) => (
-                      <PostCard key={post.frontmatter.slug} post={post} />
+                      <PostCard key={post.slug} post={post} />
                     ))}
                   </div>
 

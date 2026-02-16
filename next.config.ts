@@ -1,39 +1,34 @@
+import createMDX from '@next/mdx';
 import type { NextConfig } from 'next';
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
 
 const nextConfig: NextConfig = {
   basePath: '/blog',
   output: 'standalone',
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ['image/webp'],
     remotePatterns: [
-      { 
-        protocol: 'https', 
-        hostname: 'www.athletictrainerjob.com' 
-      },
-      { 
-        protocol: 'https', 
-        hostname: 'cdn.prod.website-files.com' 
-      },
-      { 
-        protocol: 'https', 
-        hostname: 'images.unsplash.com' 
-      },
+      { protocol: 'https', hostname: 'www.athletictrainerjob.com' },
+      { protocol: 'https', hostname: 'cdn.prod.website-files.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
   async headers() {
     return [
       {
         source: '/(.*)',
-        headers: [
-          { 
-            key: 'X-Robots-Tag', 
-            value: 'index, follow' 
-          },
-        ],
+        headers: [{ key: 'X-Robots-Tag', value: 'index, follow' }],
       },
     ];
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

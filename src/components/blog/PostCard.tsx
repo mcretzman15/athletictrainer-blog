@@ -8,11 +8,11 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const { frontmatter } = post;
+  const { frontmatter, slug } = post;
 
   return (
     <article className="bg-white rounded-xl border border-border-gray hover:shadow-xl transition-all overflow-hidden group">
-      <Link href={`/${frontmatter.slug}`}>
+      <Link href={`/${slug}`}>
         <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31]">
           {frontmatter.featuredImage && (
             <Image
@@ -36,7 +36,7 @@ export default function PostCard({ post }: PostCardProps) {
           </Link>
         </div>
 
-        <Link href={`/${frontmatter.slug}`}>
+        <Link href={`/${slug}`}>
           <h3 className="text-xl font-semibold text-dark-text mb-3 group-hover:text-primary transition-colors line-clamp-2">
             {frontmatter.title}
           </h3>

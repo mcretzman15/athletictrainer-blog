@@ -8,7 +8,7 @@ export async function GET() {
   const postUrls = posts.map((post) => {
     return `
     <url>
-      <loc>${baseUrl}/${post.frontmatter.slug}</loc>
+      <loc>${baseUrl}/${post.slug}</loc>
       <lastmod>${post.frontmatter.updatedDate || post.frontmatter.date}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>

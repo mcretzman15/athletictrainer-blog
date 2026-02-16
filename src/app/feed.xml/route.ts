@@ -5,12 +5,12 @@ export async function GET() {
   const posts = getAllPosts().slice(0, 20); // Latest 20 posts
 
   const items = posts.map((post) => {
-    const { frontmatter } = post;
+    const { frontmatter, slug } = post;
     return `
     <item>
       <title><![CDATA[${frontmatter.title}]]></title>
-      <link>${baseUrl}/${frontmatter.slug}</link>
-      <guid isPermaLink="true">${baseUrl}/${frontmatter.slug}</guid>
+      <link>${baseUrl}/${slug}</link>
+      <guid isPermaLink="true">${baseUrl}/${slug}</guid>
       <description><![CDATA[${frontmatter.description}]]></description>
       <pubDate>${new Date(frontmatter.date).toUTCString()}</pubDate>
       <category>${frontmatter.category}</category>

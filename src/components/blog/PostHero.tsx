@@ -3,11 +3,11 @@ import { ImageCredit } from "./ImageCredit";
 
 interface PostHeroProps {
   title: string;
-  featuredImage: string;
-  featuredImageAlt: string;
+  featuredImage?: string;
+  featuredImageAlt?: string;
   category: string;
   date: string;
-  readingTime: number;
+  readingTime?: number;
   imageCredit?: string;
 }
 
@@ -26,7 +26,7 @@ export default function PostHero({
         <>
           <Image
             src={featuredImage}
-            alt={featuredImageAlt}
+            alt={featuredImageAlt || title}
             fill
             className="object-cover opacity-50"
             priority
@@ -47,7 +47,7 @@ export default function PostHero({
           <div className="flex items-center gap-4 text-sm text-green-50">
             <span>{date}</span>
             <span>•</span>
-            <span>{readingTime} min read</span>
+            <span>{readingTime || 5} min read</span>
           </div>
           {imageCredit && (
             <div className="mt-2">
