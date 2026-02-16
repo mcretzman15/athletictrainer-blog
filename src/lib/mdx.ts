@@ -75,7 +75,7 @@ export interface Author {
 export function getPostSlugs(): string[] {
   // Use manifest if available (production/Cloudflare)
   if (postsManifestData.length > 0) {
-    const slugs = postsManifestData.map(p => `${p.slug}.mdx`);
+    const slugs = postsManifestData.map((p: any) => `${p.slug}.mdx`);
     console.log('[MDX] getPostSlugs from manifest:', slugs.length, 'posts');
     return slugs;
   }
