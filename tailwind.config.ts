@@ -8,10 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Army/Military brand colors
-        primary: "#4A5D3E", // Olive drab green
-        accent: "#6B8E23", // Army green (brighter)
-        secondary: "#C19A6B", // Tan/khaki
+        // Military Army Palette
+        "army-green": "#4B5320", // OD green - primary
+        "army-dark": "#2D3319", // Dark olive - headers, overlays
+        "army-tan": "#C2B280", // Khaki/sand - accents, borders
+        "army-brown": "#5C4033", // Earth brown - secondary text
+        "camo-light": "#6B7F3E", // Light camo green - highlights
+        "camo-dark": "#3B4A2B", // Dark camo - depth
+        sand: "#F5F0E8", // Warm off-white - page backgrounds
+        cream: "#FAF8F3", // Card backgrounds
+        
+        // PSI Brand colors (navbar/footer only)
+        navy: "#1B3A5F", // PSI brand navy
+        red: "#E31837", // Apply Now CTA only
         
         // Text colors
         "dark-text": "#1F2937",
@@ -21,10 +30,12 @@ const config: Config = {
         "card-bg": "#FFFFFF",
         
         // Legacy aliases for compatibility
-        navy: "#4A5D3E",
-        "psi-red": "#6B8E23",
-        "tag-bg": "#EDF2E7",
-        "tag-text": "#4A5D3E",
+        primary: "#4B5320",
+        accent: "#6B7F3E",
+        secondary: "#C2B280",
+        "psi-red": "#E31837",
+        "tag-bg": "#E8EDDC",
+        "tag-text": "#4B5320",
       },
       fontFamily: {
         sans: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
@@ -71,29 +82,29 @@ const config: Config = {
             maxWidth: "760px",
             fontSize: "1rem",
             h1: {
-              color: "#4A5D3E",
+              color: "#2D3319",
               fontWeight: "700",
               lineHeight: "1.25",
             },
             h2: {
-              color: "#4A5D3E",
+              color: "#2D3319",
               fontWeight: "600",
               lineHeight: "1.25",
             },
             h3: {
-              color: "#4A5D3E",
+              color: "#2D3319",
               fontWeight: "600",
               lineHeight: "1.3",
             },
             h4: {
-              color: "#4A5D3E",
+              color: "#2D3319",
               fontWeight: "600",
             },
             a: {
-              color: "#4A5D3E",
+              color: "#4B5320",
               textDecoration: "underline",
               "&:hover": {
-                color: "#6B8E23",
+                color: "#E31837",
               },
             },
             strong: {
@@ -101,9 +112,9 @@ const config: Config = {
               fontWeight: "600",
             },
             blockquote: {
-              borderLeftColor: "#6B8E23",
+              borderLeftColor: "#4B5320",
               fontStyle: "normal",
-              backgroundColor: "#F9FAFB",
+              backgroundColor: "#FAF8F3",
               padding: "1rem 1.5rem",
               borderRadius: "0.5rem",
             },

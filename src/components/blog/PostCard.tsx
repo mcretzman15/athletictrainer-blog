@@ -11,9 +11,9 @@ export default function PostCard({ post }: PostCardProps) {
   const { frontmatter, slug } = post;
 
   return (
-    <article className="bg-white rounded-xl border border-border-gray hover:shadow-xl transition-all overflow-hidden group">
+    <article className="bg-cream rounded-lg border border-army-tan hover:shadow-lg hover:border-l-4 hover:border-l-army-green transition-all overflow-hidden group">
       <Link href={`/${slug}`}>
-        <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary via-[#556B47] to-[#3D4F31]">
+        <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-army-dark to-army-green camo-texture">
           {frontmatter.featuredImage && (
             <Image
               src={frontmatter.featuredImage}
@@ -30,14 +30,14 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="mb-3">
           <Link
             href={`/category/${frontmatter.category.toLowerCase().replace(/\s+/g, "-")}`}
-            className="category-pill"
+            className="bg-tag-bg text-army-green px-4 py-1.5 rounded-full text-sm font-medium inline-block hover:bg-opacity-80 transition-colors"
           >
             {frontmatter.category}
           </Link>
         </div>
 
         <Link href={`/${slug}`}>
-          <h3 className="text-xl font-semibold text-dark-text mb-3 group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="text-xl font-semibold text-army-dark mb-3 group-hover:text-army-green transition-colors line-clamp-2">
             {frontmatter.title}
           </h3>
         </Link>

@@ -3,24 +3,36 @@
 @tailwind utilities;
 
 :root {
-  /* Colors - Army/Military Palette */
-  --primary: #4A5D3E;
-  --accent: #6B8E23;
-  --secondary: #C19A6B;
+  /* Military Army Palette */
+  --army-green: #4B5320;
+  --army-dark: #2D3319;
+  --army-tan: #C2B280;
+  --army-brown: #5C4033;
+  --camo-light: #6B7F3E;
+  --camo-dark: #3B4A2B;
+  --sand: #F5F0E8;
+  --cream: #FAF8F3;
+  
+  /* PSI Brand colors */
+  --navy: #1B3A5F;
+  --red: #E31837;
+  
+  /* Text colors */
   --white: #FFFFFF;
   --dark-text: #1F2937;
   --gray-text: #6B7280;
   --light-gray: #F9FAFB;
   --border-gray: #D1D5DB;
   --card-bg: #FFFFFF;
-  --link: #4A5D3E;
-  --link-hover: #6B8E23;
-  --tag-bg: #EDF2E7;
-  --tag-text: #4A5D3E;
   
-  /* Legacy aliases */
-  --navy: #4A5D3E;
-  --red: #6B8E23;
+  /* Legacy aliases for compatibility */
+  --primary: #4B5320;
+  --accent: #6B7F3E;
+  --secondary: #C2B280;
+  --link: #4B5320;
+  --link-hover: #E31837;
+  --tag-bg: #E8EDDC;
+  --tag-text: #4B5320;
 
   /* Typography */
   --text-xs: 0.75rem;
@@ -57,32 +69,44 @@
 
 @layer base {
   body {
-    @apply font-sans text-dark-text bg-white;
+    @apply font-sans text-dark-text;
+    background-color: var(--sand);
     font-size: var(--text-base);
     line-height: var(--leading-body);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-primary font-semibold;
+    color: var(--army-dark);
+    @apply font-semibold;
     line-height: var(--leading-heading);
   }
 
   a {
-    @apply text-primary hover:text-accent transition-colors;
+    color: var(--army-green);
+    @apply hover:text-red transition-colors;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white rounded-lg px-6 py-3 font-semibold hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md;
+    background-color: var(--army-green);
+    @apply text-white rounded-lg px-6 py-3 font-semibold hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md;
   }
 
   .btn-accent {
-    @apply bg-accent text-white rounded-lg px-6 py-3 font-semibold hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md;
+    background-color: var(--red);
+    @apply text-white rounded-lg px-6 py-3 font-semibold hover:bg-opacity-90 transition-all shadow-sm hover:shadow-md;
   }
 
   .btn-ghost {
-    @apply border-2 border-primary text-primary rounded-lg px-6 py-3 font-semibold hover:bg-primary hover:text-white transition-all;
+    border-color: var(--army-green);
+    color: var(--army-green);
+    @apply border-2 rounded-lg px-6 py-3 font-semibold transition-all;
+  }
+  
+  .btn-ghost:hover {
+    background-color: var(--army-green);
+    @apply text-white;
   }
 
   .category-pill {
@@ -97,5 +121,19 @@
 
   .content-width {
     @apply max-w-content mx-auto;
+  }
+  
+  .camo-texture {
+    position: relative;
+  }
+  
+  .camo-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='camo' x='0' y='0' width='200' height='200' patternUnits='userSpaceOnUse'%3E%3Cg%3E%3Cpath d='M45,32 Q55,25 68,28 T85,42 Q78,55 62,58 T45,48 Z' fill='%234B5320'/%3E%3Cpath d='M120,15 Q135,18 142,30 T138,52 Q125,58 112,52 T108,35 Q112,22 120,15 Z' fill='%23C2B280'/%3E%3Cpath d='M22,78 Q35,72 48,80 T58,102 Q48,112 32,108 T22,95 Z' fill='%235C4033'/%3E%3Cpath d='M165,68 Q178,65 188,75 T192,95 Q182,105 168,102 T160,85 Q162,75 165,68 Z' fill='%233B4A2B'/%3E%3Cpath d='M88,85 Q98,82 108,88 T115,108 Q108,118 95,115 T85,100 Q86,92 88,85 Z' fill='%236B7F3E'/%3E%3Cpath d='M15,145 Q28,140 38,148 T42,168 Q35,178 22,175 T12,158 Q13,150 15,145 Z' fill='%234B5320'/%3E%3Cpath d='M135,125 Q148,122 158,132 T160,152 Q152,162 138,158 T128,142 Q130,132 135,125 Z' fill='%235C4033'/%3E%3Cpath d='M72,152 Q82,148 92,155 T98,175 Q90,185 78,182 T68,168 Q70,158 72,152 Z' fill='%233B4A2B'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23camo)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
   }
 }
