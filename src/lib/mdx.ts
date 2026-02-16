@@ -6,28 +6,6 @@ import { calculateReadingTime, extractHeadings } from "./utils";
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 const authorsDirectory = path.join(process.cwd(), "content", "authors");
 
-// Try to load generated manifest for Cloudflare Workers (no filesystem)
-function loadManifest() {
-  try {
-    const manifestPath = path.join(process.cwd(), "src", "generated", "posts-manifest.ts");
-    if (fs.existsSync(manifestPath)) {
-      const manifestModule = require("../generated/posts-manifest");
-      console.log('[MDX] Loaded manifest:', manifestModule.postsManifest?.length || 0, 'posts');
-      return {
-        posts: manifestModule.postsManifest || [],
-        authors: manifestModule.authorsManifest || []
-      };
-    }
-  } catch (e) {
-    console.log('[MDX] Manifest not available, will use filesystem');
-  }
-  return { posts: [], authors: [] };
-}
-
-const manifest = loadManifest();
-const postsManifestData = manifest.posts;
-const authorsManifestData = manifest.authors;
-
 export interface PostFrontmatter {
   title: string;
   slug: string;
@@ -73,66 +51,13 @@ export interface Author {
 }
 
 export function getPostSlugs(): string[] {
-  // Use manifest if available (production/Cloudflare)
-  if (postsManifestData.length > 0) {
-    const slugs = postsManifestData.map((p: any) => `${p.slug}.mdx`);
-    console.log('[MDX] getPostSlugs from manifest:', slugs.length, 'posts');
-    return slugs;
-  }
-  
-  // Fallback to filesystem (dev mode)
-  console.log('[MDX] Checking posts directory:', postsDirectory);
-  console.log('[MDX] process.cwd():', process.cwd());
   if (!fs.existsSync(postsDirectory)) {
-    console.error('[MDX] Posts directory does not exist:', postsDirectory);
     return [];
   }
-  const files = fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".mdx"));
-  console.log('[MDX] Found', files.length, 'MDX files:', files);
-  return files;
+  return fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".mdx"));
 }
 
 export function getPostBySlug(slug: string): Post | null {
-  // Use manifest if available (production/Cloudflare)
-  if (postsManifestData.length > 0) {
-    const post = postsManifestData.find((p: any) => p.slug === slug);
-    if (!post) {
-      console.error(`[MDX] Post not found in manifest: ${slug}`);
-      return null;
-    }
-    return {
-      frontmatter: {
-        title: post.title,
-        slug: post.slug,
-        description: post.description,
-        date: post.date,
-        updatedDate: post.updatedDate,
-        author: post.author,
-        category: post.category,
-        tags: post.tags,
-        featuredImage: post.featuredImage,
-        featuredImageAlt: post.featuredImageAlt,
-        imageCredit: post.imageCredit,
-        readingTime: post.readingTime,
-        published: post.published,
-        featured: post.featured,
-        seoTitle: post.seoTitle,
-        seoDescription: post.seoDescription,
-        canonicalUrl: post.canonicalUrl,
-        ogImage: post.ogImage,
-        schema: post.schema,
-        funnelStage: post.funnelStage,
-        persona: post.persona,
-        primaryKeyword: post.primaryKeyword,
-        secondaryKeywords: post.secondaryKeywords,
-        relatedPosts: post.relatedPosts,
-      },
-      content: post.content,
-      headings: post.headings,
-    };
-  }
-  
-  // Fallback to filesystem (dev mode)
   try {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -140,7 +65,6 @@ export function getPostBySlug(slug: string): Post | null {
 
     const frontmatter = data as PostFrontmatter;
     
-    // Calculate reading time if not provided
     if (!frontmatter.readingTime) {
       frontmatter.readingTime = calculateReadingTime(content);
     }
@@ -160,7 +84,6 @@ export function getPostBySlug(slug: string): Post | null {
 
 export function getAllPosts(): Post[] {
   const slugs = getPostSlugs();
-  console.log('[MDX] getAllPosts: found', slugs.length, 'slugs');
   const posts = slugs
     .map((filename) => {
       const slug = filename.replace(/\.mdx$/, "");
@@ -170,10 +93,9 @@ export function getAllPosts(): Post[] {
     .sort((a, b) => {
       const dateA = new Date(a.frontmatter.date).getTime();
       const dateB = new Date(b.frontmatter.date).getTime();
-      return dateB - dateA; // Most recent first
+      return dateB - dateA;
     });
 
-  console.log('[MDX] getAllPosts: returning', posts.length, 'published posts');
   return posts;
 }
 
@@ -202,12 +124,10 @@ export function getRelatedPosts(currentSlug: string, limit: number = 3): Post[] 
   const allPosts = getAllPosts();
   const relatedBySlug = currentPost.frontmatter.relatedPosts || [];
 
-  // First, get explicitly related posts
   const explicitlyRelated = relatedBySlug
     .map((slug) => getPostBySlug(slug))
     .filter((post): post is Post => post !== null);
 
-  // If we don't have enough, find posts in same category
   if (explicitlyRelated.length < limit) {
     const sameCategory = allPosts
       .filter(
@@ -231,15 +151,6 @@ export function getAllCategories(): string[] {
 }
 
 export function getAuthorBySlug(slug: string): Author | null {
-  // Use manifest if available (production/Cloudflare)
-  if (authorsManifestData.length > 0) {
-    const author = authorsManifestData.find((a: any) => a.slug === slug);
-    if (author) {
-      return author as Author;
-    }
-  }
-  
-  // Fallback to filesystem (dev mode)
   try {
     const fullPath = path.join(authorsDirectory, `${slug}.json`);
     const fileContents = fs.readFileSync(fullPath, "utf8");

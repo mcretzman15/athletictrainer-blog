@@ -7,6 +7,10 @@ import Pagination from "@/components/blog/Pagination";
 import { getPaginatedPosts } from "@/lib/posts";
 import { getAllCategories, getFeaturedPosts } from "@/lib/mdx";
 
+interface BlogIndexProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
 export const metadata: Metadata = {
   title: "Athletic Trainer Career Resources | PSI Blog",
   description: "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities with Army H2F and Marine Corps SMIP programs.",
@@ -18,17 +22,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Force static generation at build time
-export const dynamic = 'force-static';
-
-export default async function BlogIndex() {
-  // Always show page 1 for static generation
-  console.log('[PAGE] BlogIndex rendering...');
-  const { posts, pagination } = getPaginatedPosts(1, 9);
-  console.log('[PAGE] Received', posts.length, 'posts from getPaginatedPosts');
+export default async function BlogIndex({ searchParams }: BlogIndexProps) {
+  const { page: pageParam } = await searchParams;
+  const page = Number(pageParam) || 1;
+  const { posts, pagination } = getPaginatedPosts(page, 9);
   const categories = getAllCategories();
   const featuredPosts = getFeaturedPosts(4);
-  console.log('[PAGE] Categories:', categories.length, 'Featured:', featuredPosts.length);
 
   return (
     <>

@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
-    "resolve-images": "tsx scripts/resolve-images.ts",
-    "generate-manifest": "tsx scripts/generate-posts-manifest.ts",
-    "prebuild": "npm run resolve-images && npm run generate-manifest",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,7 +12,6 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.1.6",
-    "@opennextjs/cloudflare": "^1.6.5",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.6",

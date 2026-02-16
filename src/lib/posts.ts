@@ -13,17 +13,13 @@ export function getPaginatedPosts(
   page: number = 1,
   postsPerPage: number = 9
 ): { posts: Post[]; pagination: PaginationData } {
-  console.log('[POSTS] getPaginatedPosts called with page:', page);
   const allPosts = getAllPosts();
-  console.log('[POSTS] getAllPosts returned:', allPosts.length, 'posts');
   const totalPosts = allPosts.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);
   const startIndex = (page - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
 
   const posts = allPosts.slice(startIndex, endIndex);
-  console.log('[POSTS] Sliced posts for page', page, ':', posts.length, 'posts');
-  console.log('[POSTS] Post slugs:', posts.map(p => p.frontmatter.slug));
 
   const pagination: PaginationData = {
     currentPage: page,

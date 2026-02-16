@@ -1,7 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  basePath: '/blog',
+  output: 'standalone',
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   images: {
     formats: ['image/webp', 'image/avif'],
     remotePatterns: [
