@@ -3,18 +3,30 @@ import path from "path";
 import matter from "gray-matter";
 import { calculateReadingTime, extractHeadings } from "./utils";
 
-// Import generated manifest for Cloudflare Workers (no filesystem)
-let postsManifestData: any[] = [];
-try {
-  const manifest = require("../generated/posts-manifest");
-  postsManifestData = manifest.postsManifest;
-  console.log('[MDX] Using pre-generated posts manifest:', postsManifestData.length, 'posts');
-} catch (e) {
-  console.log('[MDX] No manifest found, will use filesystem (dev mode)');
-}
-
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 const authorsDirectory = path.join(process.cwd(), "content", "authors");
+
+// Try to load generated manifest for Cloudflare Workers (no filesystem)
+function loadManifest() {
+  try {
+    const manifestPath = path.join(process.cwd(), "src", "generated", "posts-manifest.ts");
+    if (fs.existsSync(manifestPath)) {
+      const manifestModule = require("../generated/posts-manifest");
+      console.log('[MDX] Loaded manifest:', manifestModule.postsManifest?.length || 0, 'posts');
+      return {
+        posts: manifestModule.postsManifest || [],
+        authors: manifestModule.authorsManifest || []
+      };
+    }
+  } catch (e) {
+    console.log('[MDX] Manifest not available, will use filesystem');
+  }
+  return { posts: [], authors: [] };
+}
+
+const manifest = loadManifest();
+const postsManifestData = manifest.posts;
+const authorsManifestData = manifest.authors;
 
 export interface PostFrontmatter {
   title: string;
@@ -219,6 +231,15 @@ export function getAllCategories(): string[] {
 }
 
 export function getAuthorBySlug(slug: string): Author | null {
+  // Use manifest if available (production/Cloudflare)
+  if (authorsManifestData.length > 0) {
+    const author = authorsManifestData.find((a: any) => a.slug === slug);
+    if (author) {
+      return author as Author;
+    }
+  }
+  
+  // Fallback to filesystem (dev mode)
   try {
     const fullPath = path.join(authorsDirectory, `${slug}.json`);
     const fileContents = fs.readFileSync(fullPath, "utf8");

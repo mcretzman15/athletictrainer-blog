@@ -59,6 +59,7 @@ async function main() {
   console.log("📝 Generating posts manifest for Cloudflare Workers...\n");
 
   const postsDir = path.join(process.cwd(), "content", "posts");
+  const authorsDir = path.join(process.cwd(), "content", "authors");
   const generatedDir = path.join(process.cwd(), "src", "generated");
 
   if (!fs.existsSync(postsDir)) {
@@ -71,6 +72,7 @@ async function main() {
     fs.mkdirSync(generatedDir, { recursive: true });
   }
 
+  // Load posts
   const files = fs.readdirSync(postsDir).filter((f) => f.endsWith(".mdx"));
   console.log(`Found ${files.length} blog posts\n`);
 
@@ -116,22 +118,40 @@ async function main() {
     console.log(`   ✓ ${data.slug}`);
   }
 
+  // Load authors
+  const authors: any[] = [];
+  if (fs.existsSync(authorsDir)) {
+    const authorFiles = fs.readdirSync(authorsDir).filter((f) => f.endsWith(".json"));
+    console.log(`\nFound ${authorFiles.length} authors\n`);
+    
+    for (const file of authorFiles) {
+      const filePath = path.join(authorsDir, file);
+      const raw = fs.readFileSync(filePath, "utf-8");
+      const author = JSON.parse(raw);
+      authors.push(author);
+      console.log(`   ✓ ${author.slug}`);
+    }
+  }
+
   // Generate TypeScript file
   const manifestPath = path.join(generatedDir, "posts-manifest.ts");
   const fileContent = `// Auto-generated at build time - do not edit manually
-// This file bundles post data for Cloudflare Workers (no filesystem access)
+// This file bundles post and author data for Cloudflare Workers (no filesystem access)
 
 export const postsManifest = ${JSON.stringify(posts, null, 2)} as const;
 
+export const authorsManifest = ${JSON.stringify(authors, null, 2)} as const;
+
 export type PostManifest = typeof postsManifest[number];
+export type AuthorManifest = typeof authorsManifest[number];
 `;
 
   fs.writeFileSync(manifestPath, fileContent);
 
-  console.log(`\n✅ Posts manifest generated!`);
+  console.log(`\n✅ Manifest generated!`);
   console.log(`   File: ${manifestPath}`);
-  console.log(`   Posts: ${posts.length}`);
-  console.log(`   Published: ${posts.filter(p => p.published).length}`);
+  console.log(`   Posts: ${posts.length} (${posts.filter(p => p.published).length} published)`);
+  console.log(`   Authors: ${authors.length}`);
 }
 
 main().catch((err) => {
