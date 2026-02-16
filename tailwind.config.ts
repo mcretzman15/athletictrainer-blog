@@ -8,34 +8,40 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Military Army Palette
-        "army-green": "#4B5320", // OD green - primary
-        "army-dark": "#2D3319", // Dark olive - headers, overlays
-        "army-tan": "#C2B280", // Khaki/sand - accents, borders
-        "army-brown": "#5C4033", // Earth brown - secondary text
-        "camo-light": "#6B7F3E", // Light camo green - highlights
-        "camo-dark": "#3B4A2B", // Dark camo - depth
-        sand: "#F5F0E8", // Warm off-white - page backgrounds
-        cream: "#FAF8F3", // Card backgrounds
+        // Primary dark backgrounds
+        charcoal: "#1C1C1E", // Near-black - primary dark sections
+        graphite: "#2C2C2E", // Dark gray - card overlays, secondary dark
+        slate: "#3A3A3C", // Medium dark - borders on dark backgrounds
         
-        // PSI Brand colors (navbar/footer only)
-        navy: "#1B3A5F", // PSI brand navy
-        red: "#E31837", // Apply Now CTA only
+        // Warm neutrals
+        stone: "#E8E4DF", // Warm light gray - page background
+        "warm-white": "#F7F5F2", // Card backgrounds
+        parchment: "#EEEBE5", // Alternate section background
         
-        // Text colors
-        "dark-text": "#1F2937",
-        "gray-text": "#6B7280",
-        "light-gray": "#F9FAFB",
-        "border-gray": "#D1D5DB",
-        "card-bg": "#FFFFFF",
+        // Military accents (muted)
+        olive: "#5C6B4F", // Muted olive - subtle accent
+        "olive-dark": "#3D4A33", // Dark olive - text accent
+        sand: "#B8A88A", // Muted khaki - secondary accent, borders
+        rust: "#8B4513", // Dark rust - warm accent, sparingly
         
-        // Legacy aliases for compatibility
-        primary: "#4B5320",
-        accent: "#6B7F3E",
-        secondary: "#C2B280",
-        "psi-red": "#E31837",
-        "tag-bg": "#E8EDDC",
-        "tag-text": "#4B5320",
+        // PSI Brand
+        navy: "#1B3A5F", // Navbar only
+        red: "#C41E2A", // Darker red - Apply Now CTA only
+        
+        // Legacy text colors for compatibility
+        "dark-text": "#1C1C1E",
+        "gray-text": "#2C2C2E",
+        "light-gray": "#E8E4DF",
+        "border-gray": "#B8A88A",
+        "card-bg": "#F7F5F2",
+        
+        // Legacy aliases
+        primary: "#5C6B4F",
+        accent: "#5C6B4F",
+        secondary: "#B8A88A",
+        "psi-red": "#C41E2A",
+        "tag-bg": "rgba(92, 107, 79, 0.1)",
+        "tag-text": "#3D4A33",
       },
       fontFamily: {
         sans: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
@@ -82,39 +88,39 @@ const config: Config = {
             maxWidth: "760px",
             fontSize: "1rem",
             h1: {
-              color: "#2D3319",
+              color: "#1C1C1E",
               fontWeight: "700",
               lineHeight: "1.25",
             },
             h2: {
-              color: "#2D3319",
+              color: "#1C1C1E",
               fontWeight: "600",
               lineHeight: "1.25",
             },
             h3: {
-              color: "#2D3319",
+              color: "#1C1C1E",
               fontWeight: "600",
               lineHeight: "1.3",
             },
             h4: {
-              color: "#2D3319",
+              color: "#1C1C1E",
               fontWeight: "600",
             },
             a: {
-              color: "#4B5320",
+              color: "#5C6B4F",
               textDecoration: "underline",
               "&:hover": {
-                color: "#E31837",
+                color: "#3D4A33",
               },
             },
             strong: {
-              color: "#1F2937",
+              color: "#2C2C2E",
               fontWeight: "600",
             },
             blockquote: {
-              borderLeftColor: "#4B5320",
+              borderLeftColor: "#5C6B4F",
               fontStyle: "normal",
-              backgroundColor: "#FAF8F3",
+              backgroundColor: "#EEEBE5",
               padding: "1rem 1.5rem",
               borderRadius: "0.5rem",
             },

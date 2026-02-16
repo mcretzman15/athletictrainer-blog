@@ -11,9 +11,10 @@ export default function PostCard({ post }: PostCardProps) {
   const { frontmatter, slug } = post;
 
   return (
-    <article className="bg-cream rounded-lg border border-army-tan hover:shadow-lg hover:border-l-4 hover:border-l-army-green transition-all overflow-hidden group">
-      <Link href={`/${slug}`}>
-        <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-army-dark to-army-green camo-texture">
+    <article className="bg-warm-white rounded-lg overflow-hidden group transition-all hover:shadow-lg" style={{ border: '1px solid rgba(184, 168, 138, 0.4)' }}>
+      <Link href={`/${slug}`} className="block relative">
+        <div className="absolute inset-0 border-l-0 group-hover:border-l-3 border-olive transition-all z-10 pointer-events-none" />
+        <div className="relative aspect-video overflow-hidden bg-charcoal topo-texture-dark">
           {frontmatter.featuredImage && (
             <Image
               src={frontmatter.featuredImage}
@@ -30,23 +31,23 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="mb-3">
           <Link
             href={`/category/${frontmatter.category.toLowerCase().replace(/\s+/g, "-")}`}
-            className="bg-tag-bg text-army-green px-4 py-1.5 rounded-full text-sm font-medium inline-block hover:bg-opacity-80 transition-colors"
+            className="category-pill"
           >
             {frontmatter.category}
           </Link>
         </div>
 
         <Link href={`/${slug}`}>
-          <h3 className="text-xl font-semibold text-army-dark mb-3 group-hover:text-army-green transition-colors line-clamp-2">
+          <h3 className="text-xl font-semibold text-charcoal mb-3 group-hover:text-olive transition-colors line-clamp-2">
             {frontmatter.title}
           </h3>
         </Link>
 
-        <p className="text-gray-text text-sm mb-4 line-clamp-3">
+        <p className="text-graphite text-sm mb-4 line-clamp-3">
           {frontmatter.description}
         </p>
 
-        <div className="flex items-center justify-between text-xs text-gray-text">
+        <div className="flex items-center justify-between text-xs text-sand">
           <span>{formatDate(frontmatter.date)}</span>
           <span>{frontmatter.readingTime} min read</span>
         </div>

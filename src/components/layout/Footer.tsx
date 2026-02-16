@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-navy mt-auto">
+    <footer className="bg-charcoal mt-auto">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & About */}
           <div className="col-span-1 md:col-span-2">
             <div className="text-2xl font-bold mb-4 text-white">AthleticTrainerJob.com</div>
-            <p className="text-white/70 text-sm mb-4">
+            <p className="text-sand text-sm mb-4">
               Cognito Systems, a Planned Systems International (PSI) joint venture, 
               connects certified Athletic Trainers with meaningful careers in military healthcare programs.
             </p>
@@ -21,7 +21,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-white/70 hover:text-white transition-colors"
+                  className="text-sand hover:text-white transition-colors"
                 >
                   Blog
                 </Link>
@@ -29,7 +29,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="https://www.athletictrainerjob.com/job-description"
-                  className="text-white/70 hover:text-white transition-colors"
+                  className="text-sand hover:text-white transition-colors"
                 >
                   Job Description
                 </Link>
@@ -37,7 +37,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="https://www.athletictrainerjob.com/job-description#apply-main"
-                  className="text-white/70 hover:text-white transition-colors"
+                  className="text-sand hover:text-white transition-colors"
                 >
                   Apply Now
                 </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/company/planned-systems-international"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
+                className="text-sand hover:text-white transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -68,7 +68,7 @@ export default function Footer() {
                 href="https://www.facebook.com/PlannedSystemsInternational"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
+                className="text-sand hover:text-white transition-colors"
                 aria-label="Facebook"
               >
                 <svg
@@ -83,7 +83,7 @@ export default function Footer() {
                 href="https://twitter.com/psi_hq"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
+                className="text-sand hover:text-white transition-colors"
                 aria-label="X/Twitter"
               >
                 <svg
@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 mt-8 pt-8 text-sm text-white/70">
+        <div className="mt-8 pt-8 text-sm text-sand" style={{ borderTop: '1px solid #3A3A3C' }}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p>© 2026 Cognito Systems, a Planned Systems International (PSI) joint venture. All rights reserved.</p>
             <p className="text-xs max-w-2xl text-center md:text-right">

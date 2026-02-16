@@ -68,13 +68,13 @@ export default async function CategoryPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-army-dark to-army-green text-white py-16 md:py-20 camo-texture">
+      <section className="bg-charcoal text-white py-16 md:py-20 topo-texture">
         <Container>
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+          <div className="max-w-3xl relative z-10">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white" style={{ letterSpacing: '0.5px' }}>
               {currentCategory}
             </h1>
-            <p className="text-lg md:text-xl text-army-tan">
+            <p className="text-lg md:text-xl text-sand">
               Explore articles about {currentCategory.toLowerCase()} for
               athletic trainers in military healthcare.
             </p>
@@ -83,7 +83,7 @@ export default async function CategoryPage({
       </section>
 
       {/* Category Filters */}
-      <section className="bg-cream border-b border-army-tan/30 py-6">
+      <section className="bg-parchment py-6" style={{ borderBottom: '1px solid rgba(184, 168, 138, 0.3)' }}>
         <Container>
           <CategoryPills
             categories={categories}
@@ -93,14 +93,14 @@ export default async function CategoryPage({
       </section>
 
       {/* Main Content */}
-      <section className="py-12 bg-sand">
+      <section className="py-12 bg-stone">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Posts Grid */}
             <div className="lg:col-span-2">
               {posts.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-gray-text text-lg">
+                  <p className="text-graphite text-lg">
                     No articles found in this category yet.
                   </p>
                 </div>

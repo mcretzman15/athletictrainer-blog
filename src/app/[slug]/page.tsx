@@ -119,7 +119,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
       <ShareButtons url={fullUrl} title={frontmatter.title} />
 
-      <article className="py-12 bg-sand">
+      <article className="py-12 bg-stone">
         <Container maxWidth="container">
           <div className="max-w-content mx-auto mb-8">
             <Breadcrumbs items={breadcrumbItems} currentPage={frontmatter.title} />
@@ -128,7 +128,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-3">
-              <div className="max-w-content bg-cream p-8 rounded-lg shadow-sm">
+              <div className="max-w-content bg-warm-white p-8 rounded-lg shadow-sm">
                 <div className="prose prose-lg max-w-none">
                   {mdxContent}
                 </div>

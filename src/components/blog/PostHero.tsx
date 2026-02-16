@@ -21,7 +21,7 @@ export default function PostHero({
   imageCredit,
 }: PostHeroProps) {
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] bg-gradient-to-br from-army-dark to-army-green camo-texture">
+    <div className="relative w-full h-[400px] md:h-[500px] bg-charcoal topo-texture">
       {featuredImage && (
         <>
           <Image
@@ -32,21 +32,21 @@ export default function PostHero({
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2D3319]/85 to-[#4B5320]/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-charcoal/60" />
         </>
       )}
       
-      <div className="absolute bottom-0 left-0 right-0 p-8">
+      <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
         <div className="max-w-container mx-auto">
           <div className="mb-4">
-            <span className="bg-army-tan text-army-dark px-4 py-1.5 rounded-full text-sm font-medium inline-block shadow-sm">
+            <span className="bg-charcoal border border-sand text-sand px-4 py-1.5 rounded-md text-sm font-medium inline-block">
               {category}
             </span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 max-w-4xl" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 max-w-4xl" style={{ letterSpacing: '0.5px' }}>
             {title}
           </h1>
-          <div className="flex items-center gap-4 text-sm text-white/75">
+          <div className="flex items-center gap-4 text-sm text-sand">
             <span>{date}</span>
             <span>•</span>
             <span>{readingTime || 5} min read</span>

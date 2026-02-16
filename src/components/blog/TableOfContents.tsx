@@ -41,10 +41,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   return (
     <>
       {/* Mobile: Collapsible */}
-      <div className="lg:hidden bg-cream rounded-lg p-4 mb-8 border border-army-tan">
+      <div className="lg:hidden bg-warm-white rounded-lg p-4 mb-8" style={{ border: '1px solid rgba(184, 168, 138, 0.5)' }}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-between w-full text-left font-semibold text-army-dark"
+          className="flex items-center justify-between w-full text-left font-semibold text-charcoal"
         >
           <span>Table of Contents</span>
           <svg
@@ -73,8 +73,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   heading.level === 3 ? "pl-4" : ""
                 } ${
                   activeId === heading.id
-                    ? "text-army-green font-medium"
-                    : "text-gray-text hover:text-army-green"
+                    ? "text-olive font-medium"
+                    : "text-graphite hover:text-olive"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -87,8 +87,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
       {/* Desktop: Sticky Sidebar */}
       <div className="hidden lg:block sticky top-24">
-        <div className="bg-cream rounded-lg p-6 border border-army-tan">
-          <h3 className="text-sm font-semibold text-army-dark mb-4 uppercase tracking-wide">
+        <div className="bg-warm-white rounded-lg p-6" style={{ border: '1px solid rgba(184, 168, 138, 0.5)' }}>
+          <h3 className="text-sm font-semibold text-charcoal mb-4 uppercase tracking-wide">
             Table of Contents
           </h3>
           <nav className="space-y-2">
@@ -100,8 +100,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   heading.level === 3 ? "pl-4" : ""
                 } ${
                   activeId === heading.id
-                    ? "text-army-green font-medium"
-                    : "text-gray-text hover:text-army-green"
+                    ? "text-olive font-medium"
+                    : "text-graphite hover:text-olive"
                 }`}
               >
                 {heading.text}

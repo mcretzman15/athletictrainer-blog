@@ -7,9 +7,9 @@ interface AuthorBoxProps {
 
 export default function AuthorBox({ author }: AuthorBoxProps) {
   return (
-    <div className="bg-sand rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start border border-army-tan">
+    <div className="bg-parchment rounded-lg p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start" style={{ border: '1px solid rgba(184, 168, 138, 0.5)' }}>
       <div className="flex-shrink-0">
-        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-army-green">
+        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-olive">
           {author.photo ? (
             <Image
               src={author.photo}
@@ -26,9 +26,9 @@ export default function AuthorBox({ author }: AuthorBoxProps) {
       </div>
 
       <div className="flex-grow">
-        <h3 className="text-xl font-semibold text-army-dark mb-1">{author.name}</h3>
-        <p className="text-sm text-army-brown mb-3">{author.title}</p>
-        <p className="text-gray-text text-sm leading-relaxed mb-4">
+        <h3 className="text-xl font-semibold text-charcoal mb-1">{author.name}</h3>
+        <p className="text-sm text-sand mb-3">{author.title}</p>
+        <p className="text-graphite text-sm leading-relaxed mb-4">
           {author.bio}
         </p>
 
@@ -39,7 +39,7 @@ export default function AuthorBox({ author }: AuthorBoxProps) {
                 href={author.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-army-green hover:text-red transition-colors"
+                className="text-olive hover:text-olive-dark transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ export default function AuthorBox({ author }: AuthorBoxProps) {
                 href={author.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-army-green hover:text-red transition-colors"
+                className="text-olive hover:text-olive-dark transition-colors"
                 aria-label="Twitter/X"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
