@@ -3,6 +3,16 @@ import path from "path";
 import matter from "gray-matter";
 import { calculateReadingTime, extractHeadings } from "./utils";
 
+// Import generated manifest for Cloudflare Workers (no filesystem)
+let postsManifestData: any[] = [];
+try {
+  const manifest = require("../generated/posts-manifest");
+  postsManifestData = manifest.postsManifest;
+  console.log('[MDX] Using pre-generated posts manifest:', postsManifestData.length, 'posts');
+} catch (e) {
+  console.log('[MDX] No manifest found, will use filesystem (dev mode)');
+}
+
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 const authorsDirectory = path.join(process.cwd(), "content", "authors");
 
@@ -51,6 +61,14 @@ export interface Author {
 }
 
 export function getPostSlugs(): string[] {
+  // Use manifest if available (production/Cloudflare)
+  if (postsManifestData.length > 0) {
+    const slugs = postsManifestData.map(p => `${p.slug}.mdx`);
+    console.log('[MDX] getPostSlugs from manifest:', slugs.length, 'posts');
+    return slugs;
+  }
+  
+  // Fallback to filesystem (dev mode)
   console.log('[MDX] Checking posts directory:', postsDirectory);
   console.log('[MDX] process.cwd():', process.cwd());
   if (!fs.existsSync(postsDirectory)) {
@@ -63,6 +81,46 @@ export function getPostSlugs(): string[] {
 }
 
 export function getPostBySlug(slug: string): Post | null {
+  // Use manifest if available (production/Cloudflare)
+  if (postsManifestData.length > 0) {
+    const post = postsManifestData.find(p => p.slug === slug);
+    if (!post) {
+      console.error(`[MDX] Post not found in manifest: ${slug}`);
+      return null;
+    }
+    return {
+      frontmatter: {
+        title: post.title,
+        slug: post.slug,
+        description: post.description,
+        date: post.date,
+        updatedDate: post.updatedDate,
+        author: post.author,
+        category: post.category,
+        tags: post.tags,
+        featuredImage: post.featuredImage,
+        featuredImageAlt: post.featuredImageAlt,
+        imageCredit: post.imageCredit,
+        readingTime: post.readingTime,
+        published: post.published,
+        featured: post.featured,
+        seoTitle: post.seoTitle,
+        seoDescription: post.seoDescription,
+        canonicalUrl: post.canonicalUrl,
+        ogImage: post.ogImage,
+        schema: post.schema,
+        funnelStage: post.funnelStage,
+        persona: post.persona,
+        primaryKeyword: post.primaryKeyword,
+        secondaryKeywords: post.secondaryKeywords,
+        relatedPosts: post.relatedPosts,
+      },
+      content: post.content,
+      headings: post.headings,
+    };
+  }
+  
+  // Fallback to filesystem (dev mode)
   try {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`);
     const fileContents = fs.readFileSync(fullPath, "utf8");

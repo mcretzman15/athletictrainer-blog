@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
     "resolve-images": "tsx scripts/resolve-images.ts",
-    "prebuild": "npm run resolve-images",
+    "generate-manifest": "tsx scripts/generate-posts-manifest.ts",
+    "prebuild": "npm run resolve-images && npm run generate-manifest",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
