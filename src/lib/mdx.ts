@@ -95,7 +95,7 @@ export function getPostSlugs(): string[] {
 export function getPostBySlug(slug: string): Post | null {
   // Use manifest if available (production/Cloudflare)
   if (postsManifestData.length > 0) {
-    const post = postsManifestData.find(p => p.slug === slug);
+    const post = postsManifestData.find((p: any) => p.slug === slug);
     if (!post) {
       console.error(`[MDX] Post not found in manifest: ${slug}`);
       return null;
