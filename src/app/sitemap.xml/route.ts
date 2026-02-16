@@ -1,7 +1,7 @@
 import { getAllPosts, getAllCategories } from "@/lib/mdx";
 
 export async function GET() {
-  const baseUrl = "https://www.athletictrainerjob.com/blog";
+  const baseUrl = "https://blog.athletictrainerjob.com";
   const posts = getAllPosts();
   const categories = getAllCategories();
 

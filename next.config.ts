@@ -10,7 +10,7 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
-  basePath: '/blog',
+  basePath: '',
   output: 'standalone',
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: {

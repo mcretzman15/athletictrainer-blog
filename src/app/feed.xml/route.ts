@@ -1,7 +1,7 @@
 import { getAllPosts } from "@/lib/mdx";
 
 export async function GET() {
-  const baseUrl = "https://www.athletictrainerjob.com/blog";
+  const baseUrl = "https://blog.athletictrainerjob.com";
   const posts = getAllPosts().slice(0, 20); // Latest 20 posts
 
   const items = posts.map((post) => {

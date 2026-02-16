@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Athletic Trainer Career Resources | PSI Blog",
     description: "Career insights, program guides, and resources for athletic trainers exploring military healthcare opportunities.",
     type: "website",
-    url: "https://www.athletictrainerjob.com/blog/",
+    url: "https://blog.athletictrainerjob.com/",
   },
 };
 
