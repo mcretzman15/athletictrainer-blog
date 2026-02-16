@@ -101,7 +101,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border-gray mt-8 pt-8 text-sm text-gray-text">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2026 Cognito Systems / PSI. All rights reserved.</p>
+            <p>© 2026 Cognito Systems, a Planned Systems International (PSI) joint venture. All rights reserved.</p>
             <p className="text-xs max-w-2xl text-center md:text-right">
               It is our policy to promote equal employment opportunities. All personnel decisions 
               are made without regard to race, color, religion, age, sex, sexual orientation, 

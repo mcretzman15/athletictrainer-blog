@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
                 fontWeight: 500,
               }}
             >
-              Cognito Systems / PSI
+              Cognito Systems, a PSI joint venture
             </div>
           </div>
         </div>
